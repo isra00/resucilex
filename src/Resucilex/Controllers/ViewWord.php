@@ -14,9 +14,10 @@ JOIN lang USING (id_lang)
 JOIN lemma USING (word)
 WHERE lang.short = ?
 AND lemma = ?
+GROUP BY id_song
 ORDER BY page
 SQL;
-
+		$app['db']->exec("SET sql_mode = ''");
 		$songs = $app['db']->fetchAll($sql, [$app['locale'], $word]);
 
 		if (!$songs)
