@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<section class="main">
+		
+		<h1>{% trans %}All words{% endtrans %}</h1>
+
+		<article class="list-words">
+		{% for word in words %}
+
+			{% if loop.first or word.firstLetter != words[loop.index0 - 1].firstLetter %}
+			<h3>{{ word.firstLetter|upper }}</h3>
+			{% else %}
+			·
+			{% endif %}
+			<a href="{{ path('word', {_locale: app.locale, word: word.word}) }}">{{ word.word }} ({{ word.occurences }})</a>
+
+		{% endfor %}
+		</article>
+
+	</section>
+
+{% endblock %}

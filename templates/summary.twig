@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<section class="main summary">
+		
+		<h1>{% trans %}Summary{% endtrans %}</h1>
+
+		<article class="list-words">
+			<ul>
+
+			{% for wordSong in wordsSongs %}
+
+				{% if loop.first or wordSong.word != wordsSongs[loop.index0 - 1].word %}
+				<h3>{{ wordSong.word }}</h3>
+				{% endif %}
+				<li>{{ wordSong.title }} ({{ wordSong.occurences }})</li>
+
+			{% endfor %}
+			</ul>
+		</article>
+	</section>
+
+{% endblock %}

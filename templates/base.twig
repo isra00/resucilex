@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Léxico del Resucitó</title>
+	<link rel="stylesheet" href="{{ global.request.basepath }}/style.css" type="text/css" />
+</head>
+
+<body class="{{ bodyClass|default() }}">
+
+	<nav class="language"><a href="{{ path('home', {'_locale': app.locale == 'es' ? 'en' : 'es'}) }}">{% if app.locale == 'es' %}View in English{% else %}Ver en español{% endif %}</a></nav>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>

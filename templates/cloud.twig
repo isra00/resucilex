@@ -1,0 +1,18 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<section class="main page-cloud full-width">
+		
+		<h1>{% trans %}All words{% endtrans %}</h1>
+
+		<p class="explanation">{% trans %}The more times each word occurs in the songs, the bigger it is displayed. Colors are just aesthetic.{% endtrans %}</p>
+
+		<article class="cloud">
+			{% for word in words %}
+			<a href="{{ path('word', {_locale: app.locale, word: word.word}) }}" style="font-size: {{ word.size }}px; color: #{{ word.color }}; opacity: {{ word.opacity }}" title="{{ word.occurences }} songs">{{ word.word }}</a>
+			{% endfor %}
+		</article>
+	</section>
+
+{% endblock %}

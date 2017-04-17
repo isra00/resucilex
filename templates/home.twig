@@ -1,0 +1,38 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<section class="main home">
+
+		<h1>{% trans %}Lexicon <small>of the</small> <strong>HE ROSE FROM DEATH</strong>{% endtrans %}</h1>
+
+		<p class="explanation">
+			{% trans %}<strong>Notice</strong>: this lexicon is made after an automatic analysis of all the words mentioned in the songbook. Therefore, many words with similar or identical meaning may appear separately, as well as verbal conjugations. Also, composed terms (e. g. <em>word of God</em>) are not indexed.{% endtrans %}
+		</p>
+
+		<p class="explanation">
+			{% trans %}The songs are taken from the songbook edited in <strong>London 2013</strong>.{% endtrans %}
+		</p>
+
+		<nav>
+			<h3>{% trans with {'%total%': total} %}All words (%total%){% endtrans %}</h3>
+			<ul>
+				<li>&rarr; <a href="{{ path('list') }}">{% trans %}Display list of words{% endtrans %}</a></li>
+				<li>&rarr; <a href="{{ path('summary') }}">{% trans %}Display as summary with songs{% endtrans %}</a></li>
+				<li>&rarr; <a href="{{ path('tagcloud') }}">{% trans %}Display as word cloud{% endtrans %}</a></li>
+			</ul>
+
+			{# {% if app.locale == 'es' %}
+			<h3>Solo palabras del Leon-Dufour (330)</h3>
+			<ul>
+				<li>&rarr; <a href="dufour">Ver lista de palabras</a></li>
+				<li>&rarr; <a href="dufour.1">Ver resumen con cantos</a></li>
+				<li>&rarr; <a href="dufour.2">Ver como nube de palabras</a></li>
+			</ul>
+			{% endif %} #}
+
+		</nav>
+
+	</section>
+
+{% endblock %}

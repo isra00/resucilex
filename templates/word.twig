@@ -1,0 +1,43 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	
+	<section class="main full-width">
+		
+		<section class="view-word">
+
+			<div class="song-list">
+				<h3>{% trans with {'%word%': word} %}Songs where the word <strong>%word%</strong> appears:{% endtrans %}</h3>
+				<ul>
+					{% for song in songs %}
+					<li>
+						<a href="{{ word }}#song{{ song.id_song }}">
+						{{ song.title }}
+						<small>{{ song.occurences }}</small></a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+			<section class="song-contents">
+
+				<h1>{{ word }}</h1>
+				<h4>{% trans with {'%total_occurences': total_occurences, '%total_songs%': songs|length } %}appears <strong>%total_occurences%</strong> times in <strong>%total_songs%</strong> song(s){% endtrans %}</h4>
+
+				{% for song in songs %}
+				<article class="song {{ app.locale }}">
+					<a name="song{{ song.id_song }}"></a>
+					<span class="page">{{ song.page }}</span>
+					<header>
+						<h2>{{ song.title }}</h2>
+						<h3>{{ song.subtitle }}</h3>
+					</header>
+					<div class="lyrics">{{ song.text|raw|nl2br }}</div>
+				</article>
+				{% endfor %}
+
+			</section>
+		</section>
+	</section>
+
+{% endblock %}
