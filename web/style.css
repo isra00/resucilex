@@ -4,6 +4,7 @@ body {
 	margin: 0;
 	color: #222;
 	background: #fdfdfd;
+	hyphens: auto;
 }
 
 a {
@@ -21,7 +22,7 @@ ul {
 }
 
 h1 {
-	font-family: 'Sawasdee', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-weight: lighter;
 	font-size: 3em;
 	line-height: 1.4em;
@@ -110,9 +111,15 @@ p {
 	line-height: 140%;
 	text-align: justify;
 }
+	.list-words h3 {
+		text-align: center;
+	}
 	.list-words a {
 		display: inline-block;
 	}
+		.list-words a small {
+			color: #777;
+		}
 
 /*
  * WORD

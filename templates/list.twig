@@ -14,7 +14,7 @@
 			{% else %}
 			·
 			{% endif %}
-			<a href="{{ path('word', {_locale: app.locale, word: word.word}) }}">{{ word.word }} ({{ word.occurences }})</a>
+			<a href="{{ path('word', {_locale: app.locale, word: word.word}) }}">{{ word.word }} <small>({{ word.occurences }})</small></a>
 
 		{% endfor %}
 		</article>
