@@ -4,7 +4,7 @@
 
 	<section class="main">
 		
-		<h1>{% trans %}All words{% endtrans %}</h1>
+		<h1>{% trans %}All words{% endtrans %} ({{ words|length }})</h1>
 
 		<article class="list-words">
 		{% for word in words %}

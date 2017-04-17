@@ -27,8 +27,8 @@ $app['translator.domains'] = ['messages' => [
 		'The songs are taken from the songbook edited in <strong>London 2013</strong>.'
 		=> 'Los cantos están tomados del Resucitó editado en <strong>Madrid 2014</strong>.',
 
-		'All words (%total%)'
-		=> 'Todas las palabras (%total%)',
+		'Explore words (%total%)'
+		=> 'Explorar palabras (%total%)',
 
 		'Display list of words'
 		=> 'Ver lista de palabras',
@@ -70,34 +70,28 @@ $app->register(new \Silex\Provider\DoctrineServiceProvider(), array(
 //$app['debug'] = true;
 
 /** @todo Ya que siempre ocurre, hacer un filtro de esos before siempre, pa no tener que declarar para cada route */
-$setLocale = function (Request $req, Application $app) {
+$app->before(function (Request $req, Application $app) {
 	$locale = $app['db']->fetchColumn('SELECT locale FROM lang WHERE short = ?', [$app['locale']]);
 	setLocale(LC_COLLATE, $locale . '.utf8');
-};
-	
+	setLocale(LC_CTYPE, $locale . '.utf8');
+});
 
 $app->get('/{_locale}', function() use ($app) 
 {
 	$total = $app['db']->fetchColumn('SELECT COUNT(DISTINCT word) FROM word_song JOIN song USING (id_song) JOIN lang USING (id_lang) WHERE lang.short = ?', [$app['locale']]);
 	return $app['twig']->render('home.twig', ['total' => $total]);
-})
-	->bind('home')
-	->before($setLocale);
+})->bind('home');
 
 $app->get('/{_locale}/list', "Resucilex\\Controllers\\ViewList::getList")
-	->bind('list')
-	->before($setLocale);
+	->bind('list');
 
 $app->get('/{_locale}/summary', "Resucilex\\Controllers\\ViewSummary::get")
-	->bind('summary')
-	->before($setLocale);
+	->bind('summary');
 
 $app->get('/{_locale}/tagcloud', "Resucilex\\Controllers\\ViewList::getCloud")
-	->bind('tagcloud')
-	->before($setLocale);
+	->bind('tagcloud');
 
 $app->get('/{_locale}/{word}', "Resucilex\\Controllers\\ViewWord::get")
-	->bind('word')
-	->before($setLocale);
+	->bind('word');
 
 $app->run();
