@@ -47,21 +47,21 @@ class ViewList
 SELECT lemma.lemma, SUM(word_occurences) occurences
 FROM lemma
 JOIN (
- select word_song.word word, lemma.lemma, COUNT(word) word_occurences 
- FROM word_song
- JOIN song USING (id_song)
- JOIN lang USING (id_lang)
- JOIN lemma USING (word)
- WHERE lang.short = ?
- GROUP BY word
- ORDER BY word
+	select word_song.word word, lemma.lemma, COUNT(word) word_occurences 
+	FROM word_song
+	JOIN song USING (id_song)
+	JOIN lang USING (id_lang)
+	JOIN lemma USING (word)
+	WHERE lang.short = ?
+	GROUP BY word
+	ORDER BY word
 ) words ON words.word = lemma.word
 JOIN lang USING (id_lang)
 WHERE lang.short = ?
 GROUP BY lemma
 ORDER BY lemma
 SQL;
-		$words = $app['db']->exec("SET sql_mode = ''");
+		$app['db']->exec("SET sql_mode = ''");
 		$words = $app['db']->fetchAll($sql, [$app['locale'], $app['locale']]);
 
 		if (!$words)
