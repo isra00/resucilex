@@ -38,26 +38,40 @@ class ViewList
 			//echo "<pre>" . $word['word'] . "\t" . $word['occurences'] . "\t" . round($word['size'], 2) . "\t" . round(log($word['occurences']), 2) . "</pre>\n";
 		}
 
-		return $app['twig']->render('cloud.twig', ['words' => $words, 'bodyClass' => 'black']);
+		return $app['twig']->render('cloud.twig', ['words' => $words, 'bodyClass' => 'page-cloud full-width']);
 	}
 
 	protected function fetchWords(\Silex\Application $app)
 	{
 		$sql = <<<SQL
-select word_song.word word, COUNT(word) occurences 
-FROM word_song
-JOIN song USING (id_song)
+SELECT lemma.lemma, SUM(word_occurences) occurences
+FROM lemma
+JOIN (
+ select word_song.word word, lemma.lemma, COUNT(word) word_occurences 
+ FROM word_song
+ JOIN song USING (id_song)
+ JOIN lang USING (id_lang)
+ JOIN lemma USING (word)
+ WHERE lang.short = ?
+ GROUP BY word
+ ORDER BY word
+) words ON words.word = lemma.word
 JOIN lang USING (id_lang)
 WHERE lang.short = ?
-GROUP BY word
-ORDER BY word
+GROUP BY lemma
+ORDER BY lemma
 SQL;
-
-		$words = $app['db']->fetchAll($sql, [$app['locale']]);
+		$words = $app['db']->exec("SET sql_mode = ''");
+		$words = $app['db']->fetchAll($sql, [$app['locale'], $app['locale']]);
 
 		if (!$words)
 		{
 			$app->abort(404, "The language does not exist");
+		}
+
+		foreach ($words as &$word)
+		{
+			$word['word'] = $word['lemma'];
 		}
 
 		return $words;

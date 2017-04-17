@@ -5,9 +5,6 @@ body {
 	color: #222;
 	background: #fdfdfd;
 }
-	body.black {
-		background: black;
-	}
 
 a {
 	color: #1C2F90;
@@ -40,12 +37,9 @@ p {
 }
 
 .main {
-	margin: 1em auto 0;
+	margin: 1em auto;
 	width: 40rem;
 }
-	.main.full-width {
-		width: auto;
-	}
 
 .notification {
 	padding: .5em;
@@ -89,20 +83,21 @@ p {
 		text-transform: none;
 		line-height: 180%;
 	}
-		.home h1 strong {
-			display: block;
-			line-height: 100%;
-			font-family: 'Roboto Condensed', sans-serif;
-			font-size: .6em;
-			color: red;
-			font-weight: bold;
-		}
+	.home h1 strong {
+		display: block;
+		line-height: 100%;
+		font-family: 'Roboto Condensed', sans-serif;
+		font-size: .6em;
+		color: red;
+		font-weight: bold;
+	}
 
 .home h3 {
 	margin-bottom: .3em;
 }
 	.home nav li {
 		line-height: 170%;
+		font-size: 1.1em;
 	}
 
 
@@ -229,6 +224,7 @@ p {
  */
 .page-cloud {
 	color: #eee;
+	background: black;
 }
 	.page-cloud .explanation {
 		max-width: 40em;
@@ -273,6 +269,10 @@ p {
  */
 .center {
 	text-align: center;
+}
+
+.full-width .main {
+	width: auto;
 }
 
 

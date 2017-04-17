@@ -7,12 +7,13 @@ class ViewWord
 	public function get(\Silex\Application $app, $word)
 	{
 		$sql = <<<SQL
-SELECT song.*
+SELECT lemma.lemma, word_song.word, song.*
 FROM word_song
 JOIN song USING (id_song)
 JOIN lang USING (id_lang)
+JOIN lemma USING (word)
 WHERE lang.short = ?
-AND word_song.word = ?
+AND lemma = ?
 ORDER BY page
 SQL;
 
@@ -28,13 +29,13 @@ SQL;
 		foreach ($songs as &$song)
 		{
 			$song['text'] = preg_replace(
-				"/([^\w])($word|" . mb_strtoupper($word) . ")([^\w])/i", 
+				"/([^\w])(" . $song['word'] . "|" . mb_strtoupper($song['word']) . ")([^\w])/is", 
 				"$1<strong>$2</strong>$3", 
 				$song['text'], 
 				-1, 
 				$occurences
 			);
-			
+
 			$song['occurences'] = $occurences;
 
 			$totalOccurences += $occurences;
@@ -44,6 +45,7 @@ SQL;
 			'word' 				=> $word, 
 			'songs' 			=> $songs, 
 			'total_occurences' 	=> $totalOccurences, 
+			'bodyClass' 		=> 'full-width', 
 		]);
 	}
 }
