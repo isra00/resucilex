@@ -24,10 +24,19 @@ ul {
 h1 {
 	font-weight: lighter;
 	font-size: 3em;
-	line-height: 1.4em;
+	line-height: 1.1em;
 	text-transform: uppercase;
 	text-align: center;
 	margin: .5em 0;
+	hyphens: none;
+}
+
+h5 {
+	text-align: center;
+	font-weight: normal;
+	margin: 0 0 1em;
+	font-size: 1.1em;
+	color: #555;
 }
 
 p {
@@ -35,6 +44,10 @@ p {
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
+
+/*
+ * base.twig
+ */
 
 .main-header {
 	background: #046380;
@@ -111,7 +124,7 @@ p {
 	}
 
 /*
- * HOME
+ * home.twig
  */
 .home h1 {
 	margin-bottom: 5%;
@@ -152,7 +165,7 @@ p {
 
 
 /*
- * LIST
+ * list.twig
  */
 .list-words {
 	list-style: none;
@@ -160,6 +173,9 @@ p {
 	line-height: 140%;
 	text-align: justify;
 }
+	.list h1 {
+		margin-bottom: 0;
+	}
 	.list-words h3 {
 		text-align: center;
 		color: #002F2F;
@@ -175,10 +191,10 @@ p {
 		}
 
 /*
- * WORD
+ * word.twig
  */
 .song {
-	margin: 0 auto 2em;
+	margin: 1em auto 2em;
 	box-shadow: 1px 1px 5px silver;
 	padding: 1em 1.2em;
 	background: #fcfcf7;
@@ -229,13 +245,6 @@ p {
 	.view-word h1 {
 		margin-bottom: 0;
 	}
-	.view-word h5 {
-		text-align: center;
-		font-weight: normal;
-		margin: 0 0 2em;
-		font-size: 1.1em;
-		color: #555;
-	}
 	.view-word .song-list {
 		position: fixed;
 		vertical-align: top;
@@ -251,6 +260,7 @@ p {
 			font-weight: normal;
 			margin: 2.5em 1em 1em 1.2rem;
 			color: #002F2F;
+			hyphens: none;
 		}
 		.view-word .song-list ul {
 			list-style: none;
@@ -285,7 +295,7 @@ p {
 	}
 
 /*
- * CLOUD
+ * cloud.twig
  */
 .page-cloud {
 	color: #eee;
@@ -308,7 +318,7 @@ p {
 	}
 
 /*
- * SUMMARY
+ * summary.twig
  */
 .summary ul {
 	-moz-column-width: 18rem;
@@ -330,7 +340,7 @@ p {
 }
 
 /*
- * GENÉRICO
+ * Generic
  */
 .center {
 	text-align: center;
@@ -340,12 +350,79 @@ p {
 	width: auto;
 }
 
+.big-only {
+	display: inherit;
+}
+
+.small-only {
+	display: none;
+}
+
 
 @media only screen and (max-width: 40rem) {
+
+	.big-only {
+		display: none;
+	}
+
+	.small-only {
+		display: inherit;
+	}
 
 	.main {
 		width: auto;
 		margin: .5em;
 	}
+
+	.full-width .main-header h2 {
+		margin-left: 0;
+	}
+
+	.home h1 {
+		font-size: 2.5em;
+	}
+
+	.view-word .song-list {
+		position: relative;
+		top: auto;
+		width: auto;
+		overflow-y: visible;
+		max-height: none;
+	}
+
+		.view-word .song-list h3 {
+			margin: 0 0 .5em;
+		}
+
+		.song-list li {
+			padding: 0;
+		}
+
+	.view-word .song-contents {
+		margin-left: 0;
+	}
+
+	.song {
+		padding: .7em .9em;
+		font-size: .9em;
+		width: auto;
+	}
+		.song .page {
+			font-size: 1.4em;
+		}
+
+}
+
+
+@media only screen and (max-width: 22rem) {
+
+	.tiny-invisible {
+		display: none;
+	}
+
+	.main-header h2 {
+		font-size: 1.3em;
+	}
+
 
 }

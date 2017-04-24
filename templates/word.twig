@@ -2,12 +2,17 @@
 
 {% block content %}
 	
-	<section class="main">
+	<section class="main view-word">
 		
-		<section class="view-word">
+		<header class="small-only">
+			<h1>{{ word }}</h1>
+			<h5>{% trans with {'%total_occurences': total_occurences, '%total_songs%': songs|length } %}appears <strong>%total_occurences%</strong> times in <strong>%total_songs%</strong> song(s){% endtrans %}</h5>
+		</header>
+
+		<section>
 
 			<div class="song-list">
-				<h3>{% trans with {'%word%': word} %}Songs where the word <strong>%word%</strong> appears:{% endtrans %}</h3>
+				<h3 class="big-only">{% trans with {'%word%': word} %}Songs where the word <strong>%word%</strong> appears:{% endtrans %}</h3>
 				<ul>
 					{% for song in songs %}
 					<li>
@@ -21,8 +26,8 @@
 
 			<section class="song-contents">
 
-				<h1>{{ word }}</h1>
-				<h5>{% trans with {'%total_occurences': total_occurences, '%total_songs%': songs|length } %}appears <strong>%total_occurences%</strong> times in <strong>%total_songs%</strong> song(s){% endtrans %}</h5>
+				<h1 class="big-only">{{ word }}</h1>
+				<h5 class="big-only">{% trans with {'%total_occurences': total_occurences, '%total_songs%': songs|length } %}appears <strong>%total_occurences%</strong> times in <strong>%total_songs%</strong> song(s){% endtrans %}</h5>
 
 				{% for song in songs %}
 				<article class="song {{ app.locale }}">

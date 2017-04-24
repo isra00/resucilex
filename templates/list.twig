@@ -2,9 +2,10 @@
 
 {% block content %}
 
-	<section class="main">
+	<section class="main list">
 		
-		<h1>{% trans %}All words{% endtrans %} ({{ words|length }})</h1>
+		<h1>{% trans %}All words{% endtrans %}</h1>
+		<h5>{% trans with { '%total%': words|length } %}Totaling %total%{% endtrans %}</h5>
 
 		<article class="list-words">
 		{% for word in words %}

@@ -51,6 +51,9 @@ $app['translator.domains'] = ['messages' => [
 		'All words'
 		=> 'Todas las palabras',
 
+		'Totaling %total%'
+		=> '%total% en total',
+
 		//word.twig
 		'Songs where the word <strong>%word%</strong> appears:'
 		=> 'Cantos en los que aparece la palabra <strong>%word%</strong>:',
