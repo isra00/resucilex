@@ -29,8 +29,8 @@ $app['translator.domains'] = ['messages' => [
 		'Lexicon <small>of the</small> <strong>HE ROSE FROM DEATH</strong>'
 		=> 'Léxico <small>del</small> <strong>RESUCITÓ</strong>',
 		
-		'<strong>Notice</strong>: this lexicon is made after an automatic analysis of all the words mentioned in the songbook. Therefore, many words with similar or identical meaning may appear separately, as well as verbal conjugations. Also, composed terms (e. g. <em>word of God</em>) are not indexed.'
-		=> '<strong>Nota</strong>: este léxico es producto de un análisis automático de todas las palabras que aparecen en el libro de cantos. Los verbos se listan en infinitivo, y los nombres y adjetivos, por lo general, en masculino singular, aunque en los cantos las palabras se muestran tal y como aparecen. Además, no se han indexado términos compuestos (p. ej. <em>palabra de Dios</em>).',
+		'<strong>Notice</strong>: verbs appear in infinitive, and nouns in singular. Only single words are indexed, not composed terms. For instance, you will not find <em>word of God</em>, but <em>word</em> and <em>God</em> separately. Prepositions, pronouns, conjunctions, etc. are not indexed.'
+		=> '<strong>Nota</strong>: los verbos se listan en infinitivo, y los nombres y adjetivos, por lo general, en masculino singular. No se han indexado términos compuestos, sino palabras sueltas. Por ejemplo, no encontrarás <em>palabra de Dios</em>, sino <em>palabra</em> y <em>Dios</em> por separado. Preposiciones, pronombres, conjunctiones, etc. no se listan.',
 
 		'The songs are taken from the songbook edited in <strong>London 2013</strong>.'
 		=> 'Los cantos están tomados del Resucitó editado en <strong>Madrid 2014</strong>.',

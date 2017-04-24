@@ -158,10 +158,13 @@ p {
 	.home h3 small {
 		color: #A7A37E;
 	}
-	.home nav li {
-		line-height: 170%;
-		font-size: 1.1em;
+	.home nav {
+		margin-bottom: 3%;
 	}
+		.home nav li {
+			line-height: 170%;
+			font-size: 1.1em;
+		}
 
 
 /*
@@ -354,7 +357,7 @@ p {
 	display: inherit;
 }
 
-.small-only {
+.small-only, .word-small-header {
 	display: none;
 }
 
@@ -369,6 +372,10 @@ p {
 		display: inherit;
 	}
 
+	h1 {
+		font-size: 2.2em;
+	}
+
 	.main {
 		width: auto;
 		margin: .5em;
@@ -379,9 +386,32 @@ p {
 	}
 
 	.home h1 {
-		font-size: 2.5em;
+		font-size: 2.7em;
 	}
 
+}
+
+
+/* word.twig is medium size */
+@media only screen and (max-width: 60rem) {
+
+	.big-only {
+		display: none;
+	}
+
+	/*
+	 * word.twig
+	 */
+
+	.main.view-word {
+		width: auto;
+		margin: .5em;
+	}
+
+	.word-small-header {
+		display: inherit;
+	}
+	 
 	.view-word .song-list {
 		position: relative;
 		top: auto;
@@ -410,9 +440,7 @@ p {
 		.song .page {
 			font-size: 1.4em;
 		}
-
 }
-
 
 @media only screen and (max-width: 22rem) {
 
