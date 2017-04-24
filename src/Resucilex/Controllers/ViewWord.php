@@ -28,6 +28,9 @@ SQL;
 
 		foreach ($songs as &$song)
 		{
+			//Regexp does not highlight words if first or last in text. This solves it.
+			$song['text'] = '#' . $song['text'] . '#';
+
 			$song['text'] = preg_replace(
 				"/([^\w])(" . $song['word'] . "|" . mb_strtoupper($song['word']) . ")([^\w])/is", 
 				"$1<strong>$2</strong>$3", 
@@ -35,6 +38,9 @@ SQL;
 				-1, 
 				$occurences
 			);
+
+			//Remove the initial and ending # added above.
+			$song['text'] = mb_substr($song['text'], 1, mb_strlen($song['text']) - 2);
 
 			$song['occurences'] = $occurences;
 
