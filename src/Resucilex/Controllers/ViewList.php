@@ -44,25 +44,23 @@ class ViewList
 	protected function fetchWords(\Silex\Application $app)
 	{
 		$sql = <<<SQL
-SELECT lemma.lemma, SUM(word_occurences) occurences
+SELECT lemma.lemma, isProper, SUM(word_occurences) occurences
 FROM lemma
 JOIN (
 	select word_song.word word, lemma.lemma, COUNT(word) word_occurences 
 	FROM word_song
 	JOIN song USING (id_song)
-	JOIN lang USING (id_lang)
 	JOIN lemma USING (word)
-	WHERE lang.short = ?
+	WHERE song.id_lang = ? AND lemma.id_lang = ?
 	GROUP BY word
 	ORDER BY word
 ) words ON words.word = lemma.word
-JOIN lang USING (id_lang)
-WHERE lang.short = ?
+WHERE lemma.id_lang = ?
 GROUP BY lemma
 ORDER BY lemma
 SQL;
 		$app['db']->exec("SET sql_mode = ''");
-		$words = $app['db']->fetchAll($sql, [$app['locale'], $app['locale']]);
+		$words = $app['db']->fetchAll($sql, [$app['id_lang'], $app['id_lang'], $app['id_lang']]);
 
 		if (!$words)
 		{

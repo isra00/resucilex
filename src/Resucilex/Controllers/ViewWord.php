@@ -7,18 +7,17 @@ class ViewWord
 	public function get(\Silex\Application $app, $word)
 	{
 		$sql = <<<SQL
-SELECT lemma.lemma, word_song.word, song.*
+SELECT lemma.lemma, lemma.isProper, word_song.word, song.*
 FROM word_song
 JOIN song USING (id_song)
-JOIN lang USING (id_lang)
 JOIN lemma USING (word)
-WHERE lang.short = ?
-AND lemma = ?
+WHERE song.id_lang = ?
+AND lemma = ? AND lemma.id_lang = ?
 GROUP BY id_song
 ORDER BY page
 SQL;
 		$app['db']->exec("SET sql_mode = ''");
-		$songs = $app['db']->fetchAll($sql, [$app['locale'], $word]);
+		$songs = $app['db']->fetchAll($sql, [$app['id_lang'], $word, $app['id_lang']]);
 
 		if (!$songs)
 		{
@@ -43,10 +42,18 @@ SQL;
 		}
 
 		return $app['twig']->render('word.twig', [
-			'word' 				=> $word, 
+			'word' 				=> $songs[0]['isProper'] ? $this->mbUcFirst($word) : $word, 
 			'songs' 			=> $songs, 
 			'total_occurences' 	=> $totalOccurences, 
 			'bodyClass' 		=> 'full-width', 
 		]);
+	}
+
+	/**
+	 * Copied from Twig_Extension_Core::twig_capitalize_string_filter()
+	 */
+	protected function mbUcFirst($string)
+	{
+		return mb_strtoupper(mb_substr($string, 0, 1)).mb_strtolower(mb_substr($string, 1, mb_strlen($string)));
 	}
 }
