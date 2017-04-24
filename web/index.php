@@ -5,12 +5,11 @@ require '../vendor/autoload.php';
 use \Symfony\Component\HttpFoundation\Request;
 use \Silex\Application;
 
-$config = require __DIR__ . '/../config.php';
-
 $app = new Application;
+$app['config'] = require __DIR__ . '/../config.php';
 
 $app->register(new \Silex\Provider\TwigServiceProvider(), array(
-	'twig.path' => $config['templates_dir']
+	'twig.path' => $app['config']['templates_dir']
 ));
 
 $app->register(new \Silex\Provider\LocaleServiceProvider());
@@ -22,13 +21,13 @@ $app['translator.domains'] = ['messages' => [
 		=> 'Léxico <small>del</small> <strong>RESUCITÓ</strong>',
 		
 		'<strong>Notice</strong>: this lexicon is made after an automatic analysis of all the words mentioned in the songbook. Therefore, many words with similar or identical meaning may appear separately, as well as verbal conjugations. Also, composed terms (e. g. <em>word of God</em>) are not indexed.'
-		=> '<strong>Nota</strong>: este léxico es producto de un análisis automático de todas las palabras que aparecen en el libro de cantos. Por tanto, muchas palabras con el mismo significado o conjugaciones verbales aparecerán como palabras diferentes. Además, no se han indexado términos compuestos (p. ej. <em>palabra de Dios</em>).',
+		=> '<strong>Nota</strong>: este léxico es producto de un análisis automático de todas las palabras que aparecen en el libro de cantos. Los verbos se listan en infinitivo, y los nombres y adjetivos, por lo general, en masculino singular, aunque obviamente, en los cantos las palabras se muestran tal y como aparecen. Además, no se han indexado términos compuestos (p. ej. <em>palabra de Dios</em>).',
 
 		'The songs are taken from the songbook edited in <strong>London 2013</strong>.'
 		=> 'Los cantos están tomados del Resucitó editado en <strong>Madrid 2014</strong>.',
 
-		'Explore words (%total%)'
-		=> 'Explorar palabras (%total%)',
+		'Explore words <small>(%total%)</small>'
+		=> 'Explorar palabras <small>(%total%)</small>',
 
 		'Display list of words'
 		=> 'Ver lista de palabras',
@@ -59,26 +58,28 @@ $app['translator.domains'] = ['messages' => [
 $app->register(new \Silex\Provider\DoctrineServiceProvider(), array(
 	'db.options' => array(
 		'driver'	=> 'pdo_mysql',
-		'host'		=> $config['db']['host'],
-		'user'		=> $config['db']['user'],
-		'password'	=> $config['db']['password'],
-		'dbname'	=> $config['db']['database'],
-		'charset'	=> $config['db']['charset']
+		'host'		=> $app['config']['db']['host'],
+		'user'		=> $app['config']['db']['user'],
+		'password'	=> $app['config']['db']['password'],
+		'dbname'	=> $app['config']['db']['database'],
+		'charset'	=> $app['config']['db']['charset']
 	),
 ));
 
-//$app['debug'] = true;
+$app['debug'] = $app['config']['debug'];
 
 /** @todo Ya que siempre ocurre, hacer un filtro de esos before siempre, pa no tener que declarar para cada route */
 $app->before(function (Request $req, Application $app) {
 	$locale = $app['db']->fetchColumn('SELECT locale FROM lang WHERE short = ?', [$app['locale']]);
 	setLocale(LC_COLLATE, $locale . '.utf8');
 	setLocale(LC_CTYPE, $locale . '.utf8');
+
+	$app['id_lang'] = $app['config']['lang'][$app['locale']];
 });
 
 $app->get('/{_locale}', function() use ($app) 
 {
-	$total = $app['db']->fetchColumn('SELECT COUNT(DISTINCT word) FROM word_song JOIN song USING (id_song) JOIN lang USING (id_lang) WHERE lang.short = ?', [$app['locale']]);
+	$total = $app['db']->fetchColumn('SELECT COUNT(DISTINCT lemma) FROM lemma WHERE id_lang = ?', [$app['id_lang']]);
 	return $app['twig']->render('home.twig', ['total' => $total]);
 })->bind('home');
 

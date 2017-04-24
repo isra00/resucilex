@@ -11,10 +11,10 @@
 
 			{% for wordSong in wordsSongs %}
 
-				{% if loop.first or wordSong.word != wordsSongs[loop.index0 - 1].word %}
-				<h3>{{ wordSong.word }}</h3>
+				{% if loop.first or wordSong.lemma != wordsSongs[loop.index0 - 1].lemma %}
+				<h3>{{ wordSong.lemma }}</h3>
 				{% endif %}
-				<li>{{ wordSong.title }} ({{ wordSong.occurences }})</li>
+				<li>{{ wordSong.title }} <small>({{ wordSong.occurences }})</small></li>
 
 			{% endfor %}
 			</ul>

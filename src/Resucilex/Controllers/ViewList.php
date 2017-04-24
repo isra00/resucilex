@@ -34,8 +34,6 @@ class ViewList
 			{
 				$word['size'] += 1/(log($word['occurences']) + 0.00001) * 3;
 			}
-
-			//echo "<pre>" . $word['word'] . "\t" . $word['occurences'] . "\t" . round($word['size'], 2) . "\t" . round(log($word['occurences']), 2) . "</pre>\n";
 		}
 
 		return $app['twig']->render('cloud.twig', ['words' => $words, 'bodyClass' => 'page-cloud full-width']);

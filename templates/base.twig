@@ -5,15 +5,51 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Léxico del Resucitó</title>
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet"> 
+	{% if not app.debug %}<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">{% endif %}
 	<link rel="stylesheet" href="{{ global.request.basepath }}/style.css" type="text/css" />
 </head>
 
 <body class="{{ bodyClass|default() }}">
 
-	<nav class="language"><a href="{{ path('home', {'_locale': app.locale == 'es' ? 'en' : 'es'}) }}">{% if app.locale == 'es' %}View in English{% else %}Ver en español{% endif %}</a></nav>
+	<header class="main-header">
+		<div class="inside">
+			
+			<h2><a href="{{ path('home') }}">Léxico <strong>Resucitó</strong></a></h2>
+
+			<nav class="language">
+				<a href="{{ path('home', {'_locale': app.locale == 'es' ? 'en' : 'es'}) }}">{% if app.locale == 'es' %}View in English{% else %}Ver en español{% endif %}</a>
+			</nav>
+		</div>
+
+	</header>
+
+	{# <table width="100%" style="color: white">
+		<tr>
+		<td bgcolor=E6E2AF style="height: 40px">E6E2AF</td>
+		<td bgcolor=A7A37E style="height: 40px">A7A37E</td>
+		<td bgcolor=EFECCA style="height: 40px">EFECCA</td>
+		<td bgcolor=046380 style="height: 40px">046380</td>
+		<td bgcolor=002F2F style="height: 40px">002F2F</td>
+		</tr>
+	</table>
+
+	<table width="100%" style="color: white">
+		<tr>
+		<td bgcolor=E6E2AF style="height: 3px"></td>
+		<td bgcolor=A7A37E style="height: 3px"></td>
+		<td bgcolor=EFECCA style="height: 3px"></td>
+		<td bgcolor=046380 style="height: 3px"></td>
+		<td bgcolor=002F2F style="height: 3px"></td>
+		</tr>
+	</table> #}
 
 {% block content %}{% endblock %}
+
+	{# <footer class="main-footer">
+		<div class="inside">
+			Free software crafted in Tanzania.
+		</div>
+	</footer> #}
 
 </body>
 </html>

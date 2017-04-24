@@ -22,15 +22,15 @@
 			<section class="song-contents">
 
 				<h1>{{ word }}</h1>
-				<h4>{% trans with {'%total_occurences': total_occurences, '%total_songs%': songs|length } %}appears <strong>%total_occurences%</strong> times in <strong>%total_songs%</strong> song(s){% endtrans %}</h4>
+				<h5>{% trans with {'%total_occurences': total_occurences, '%total_songs%': songs|length } %}appears <strong>%total_occurences%</strong> times in <strong>%total_songs%</strong> song(s){% endtrans %}</h5>
 
 				{% for song in songs %}
 				<article class="song {{ app.locale }}">
 					<a name="song{{ song.id_song }}"></a>
 					<span class="page">{{ song.page }}</span>
 					<header>
-						<h2>{{ song.title }}</h2>
-						<h3>{{ song.subtitle }}</h3>
+						<h3>{{ song.title }}</h3>
+						<h4>{{ song.subtitle }}</h4>
 					</header>
 					<div class="lyrics">{{ song.text|raw|nl2br }}</div>
 				</article>

@@ -15,7 +15,7 @@
 		</p>
 
 		<nav>
-			<h3>{% trans with {'%total%': total} %}Explore words (%total%){% endtrans %}</h3>
+			<h3>{% trans with {'%total%': total} %}Explore words <small>(%total%)</small>{% endtrans %}</h3>
 			<ul>
 				<li>&rarr; <a href="{{ path('list') }}">{% trans %}Display list of words{% endtrans %}</a></li>
 				<li>&rarr; <a href="{{ path('summary') }}">{% trans %}Display as summary with songs{% endtrans %}</a></li>
