@@ -17,11 +17,17 @@ $app->register(new \Silex\Provider\TranslationServiceProvider());
 
 $app['translator.domains'] = ['messages' => [
 	'es' => [
+
+		//base.twig
+		'Lexicon <strong>He Rose</strong>'
+		=> 'Léxico <strong>Resucitó</strong>',
+
+		//home.twig
 		'Lexicon <small>of the</small> <strong>HE ROSE FROM DEATH</strong>'
 		=> 'Léxico <small>del</small> <strong>RESUCITÓ</strong>',
 		
 		'<strong>Notice</strong>: this lexicon is made after an automatic analysis of all the words mentioned in the songbook. Therefore, many words with similar or identical meaning may appear separately, as well as verbal conjugations. Also, composed terms (e. g. <em>word of God</em>) are not indexed.'
-		=> '<strong>Nota</strong>: este léxico es producto de un análisis automático de todas las palabras que aparecen en el libro de cantos. Los verbos se listan en infinitivo, y los nombres y adjetivos, por lo general, en masculino singular, aunque obviamente, en los cantos las palabras se muestran tal y como aparecen. Además, no se han indexado términos compuestos (p. ej. <em>palabra de Dios</em>).',
+		=> '<strong>Nota</strong>: este léxico es producto de un análisis automático de todas las palabras que aparecen en el libro de cantos. Los verbos se listan en infinitivo, y los nombres y adjetivos, por lo general, en masculino singular, aunque en los cantos las palabras se muestran tal y como aparecen. Además, no se han indexado términos compuestos (p. ej. <em>palabra de Dios</em>).',
 
 		'The songs are taken from the songbook edited in <strong>London 2013</strong>.'
 		=> 'Los cantos están tomados del Resucitó editado en <strong>Madrid 2014</strong>.',
@@ -38,18 +44,22 @@ $app['translator.domains'] = ['messages' => [
 		'Display as word cloud'
 		=> 'Ver como nube de palabras',
 
+		//list.twig
 		'All words'
 		=> 'Todas las palabras',
 
+		//word.twig
 		'Songs where the word <strong>%word%</strong> appears:'
 		=> 'Cantos en los que aparece la palabra <strong>%word%</strong>:',
 
 		'appears <strong>%total_occurences%</strong> times in <strong>%total_songs%</strong> song(s)'
 		=> 'Aparece <strong>%total_occurences%</strong> veces en <strong>%total_songs%</strong> canto(s)',
 
+		//summary.twig
 		'Summary'
 		=> 'Vista resumida',
 
+		//cloud.twig
 		'The more times each word occurs in the songs, the bigger it is displayed. Colors are just aesthetic.'
 		=> 'Las palabras se muestran más grandes cuantas más veces aparecen en los cantos. Los colores de las palabras son puramente decorativos: no significan nada.',
 	]

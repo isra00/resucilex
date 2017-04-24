@@ -14,7 +14,7 @@
 	<header class="main-header">
 		<div class="inside">
 			
-			<h2><a href="{{ path('home') }}">Léxico <strong>Resucitó</strong></a></h2>
+			<h2><a href="{{ path('home') }}">{% trans %}Lexicon <strong>He Rose</strong>{% endtrans %}</a></h2>
 
 			<nav class="language">
 				<a href="{{ path('home', {'_locale': app.locale == 'es' ? 'en' : 'es'}) }}">{% if app.locale == 'es' %}View in English{% else %}Ver en español{% endif %}</a>
