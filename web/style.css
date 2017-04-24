@@ -148,23 +148,19 @@ p {
 		font-weight: bold;
 	}
 
-.home h3 {
-	margin-bottom: .3em;
-	color: #002F2F;
-	border-bottom: 2px solid #E6E2AF;
-	text-transform: uppercase;
-	line-height: 150%;
+.home nav {
+	margin-bottom: 2em;
+	line-height: 170%;
+	font-size: 1.2em;
+	color: #A7A37E;
 }
-	.home h3 small {
-		color: #A7A37E;
+	.home nav h3 {
+		margin-bottom: .3em;
+		border-bottom: 2px solid #E6E2AF;
+		text-transform: uppercase;
+		line-height: 150%;
+		font-size: 1em;
 	}
-	.home nav {
-		margin-bottom: 3%;
-	}
-		.home nav li {
-			line-height: 170%;
-			font-size: 1.1em;
-		}
 
 
 /*
@@ -313,6 +309,7 @@ p {
 .cloud {
 	font-family: 'IM FELL English PRO', georgia, serif;
 	overflow: hidden;
+	text-align: justify;
 }
 	.cloud a {
 		display: inline-block;
@@ -442,6 +439,10 @@ p {
 		}
 }
 
+
+/*
+ * Very narrow screens
+ */
 @media only screen and (max-width: 22rem) {
 
 	.tiny-invisible {
@@ -451,6 +452,5 @@ p {
 	.main-header h2 {
 		font-size: 1.3em;
 	}
-
 
 }
