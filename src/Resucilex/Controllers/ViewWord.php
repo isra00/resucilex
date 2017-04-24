@@ -47,11 +47,14 @@ SQL;
 			$totalOccurences += $occurences;
 		}
 
+		$word4print = $songs[0]['isProper'] ? $this->mbUcFirst($word) : $word;
+
 		return $app['twig']->render('word.twig', [
-			'word' 				=> $songs[0]['isProper'] ? $this->mbUcFirst($word) : $word, 
+			'word' 				=> $word4print, 
 			'songs' 			=> $songs, 
 			'total_occurences' 	=> $totalOccurences, 
 			'bodyClass' 		=> 'full-width', 
+			'pageTitle'			=> $word4print
 		]);
 	}
 

@@ -19,6 +19,9 @@ $app['translator.domains'] = ['messages' => [
 	'es' => [
 
 		//base.twig
+		'Lexicon of the He Rose From Death'
+		=> 'Léxico del Resucitó',
+		
 		'Lexicon <strong>He Rose</strong>'
 		=> 'Léxico <strong>Resucitó</strong>',
 

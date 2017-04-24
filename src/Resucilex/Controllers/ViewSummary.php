@@ -36,7 +36,10 @@ SQL;
 			}
 		}
 
-		return $app['twig']->render('summary.twig', ['wordsSongs' => $wordsSongs]);
+		return $app['twig']->render('summary.twig', [
+			'wordsSongs' => $wordsSongs,
+			'pageTitle'	 => $app['translator']->trans('Summary')
+		]);
 	}
 
 	/**

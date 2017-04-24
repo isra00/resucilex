@@ -13,7 +13,10 @@ class ViewList
 			$word['firstLetter'] = iconv("utf-8", "ascii//TRANSLIT", mb_substr($word['word'], 0, 1));
 		}
 
-		return $app['twig']->render('list.twig', ['words' => $words]);
+		return $app['twig']->render('list.twig', [
+			'words' => $words, 
+			'pageTitle' => $app['translator']->trans('All words')
+		]);
 	}
 
 	public function getCloud(\Silex\Application $app)
@@ -36,7 +39,11 @@ class ViewList
 			}
 		}
 
-		return $app['twig']->render('cloud.twig', ['words' => $words, 'bodyClass' => 'page-cloud full-width']);
+		return $app['twig']->render('cloud.twig', [
+			'words' => $words, 
+			'bodyClass' => 'page-cloud full-width',
+			'pageTitle' => 'Word cloud'
+		]);
 	}
 
 	protected function fetchWords(\Silex\Application $app)
