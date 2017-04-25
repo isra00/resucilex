@@ -13,6 +13,12 @@ return [
 		'Lexicon <strong>He Rose</strong>'
 		=> 'Léxico <strong>Resucitó</strong>',
 
+		'Free software <a href="%url%">crafted</a> in Tanzania.'
+		=> 'Software libre <a href="%url%">hecho</a> en Tanzania.',
+
+		'Contact the author'
+		=> 'Contacto del autor',
+
 		//home.twig
 		'Lexicon <small>of the</small> <strong>HE ROSE FROM DEATH</strong>'
 		=> 'Léxico <small>del</small> <strong>RESUCITÓ</strong>',

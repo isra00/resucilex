@@ -36,8 +36,8 @@
 	</div>
 
 	<footer class="main-footer">
-		Free software <a href="http://github.com/isra00/resucilex">crafted</a> in Tanzania. 
-		<a href="javascript:void(0)" onclick="go()">Contact the author</a>.
+		{% trans with { '%url%': 'http://github.com/isra00/resucilex' } %}Free software <a href="%url%">crafted</a> in Tanzania.{% endtrans %}
+		<a href="javascript:void(0)" onclick="go()">{% trans %}Contact the author{% endtrans %}</a>.
 	</footer>
 
 	<script>
