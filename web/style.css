@@ -1,3 +1,15 @@
+/**
+ * Arena oscuro: E6E2AF
+ * Arena claro:  EFECCA
+ * Marrón: 		 A7A37E
+ * Azul: 		 046380
+ * Verde: 		 002F2F
+ */
+
+html, body {
+	height: 100%;
+}
+
 body {
 	font-family: 'Roboto', sans-serif;
 	line-height: 140%;
@@ -48,6 +60,17 @@ p {
 /*
  * base.twig
  */
+
+.wrapper {
+	min-height: 100%;
+	height: auto!important;
+	height: 100%;
+	margin: 0 auto -50px;
+}
+	.push {
+		height: 50px;
+		clear: both;
+	}
 
 .main-header {
 	background: #046380;
@@ -104,24 +127,39 @@ p {
 		}
 
 .main {
-	margin: 1em auto;
+	margin: 1em auto 2em;
 	width: 40rem;
 }
 
 .main-footer {
 	background: #EFECCA;
 	color: #A7A37E;
-	margin: 4% 0 0 0;
-	padding: 1em;
 	text-align: center;
 	font-weight: bold;
+	letter-spacing: .05em;
+	font-size: .9em;
 	text-transform: uppercase;
-	letter-spacing: .04em;
+	hyphens: none;
+	border-top: 2px solid #E6E2AF;
+	padding: 0;
+	margin: 0;
+	height: 48px;
+	max-height: 48px;
+	line-height: 48px;
 }
 	.main-footer .inside {
 		max-width: 40em;
-		margin: 0 auto;
+		margin: 1em auto;
+		padding: 0 1em;
 	}
+
+	.main-footer a {
+		color: #046380;
+	}
+		.main-footer a:hover,
+		.main-footer a:active {
+			border-bottom: 1px dotted #046380;
+		}
 
 /*
  * home.twig
@@ -360,6 +398,20 @@ p {
 
 
 @media only screen and (max-width: 40rem) {
+
+	.wrapper {
+		margin-bottom: 0;
+	}
+	.push {
+		height: 0;
+	}
+	.main-footer {
+		height: auto;
+		max-height: none;
+		line-height: 150%;
+		padding: .5em .2em;
+		letter-spacing: .03em;
+	}
 
 	.big-only {
 		display: none;

@@ -7,49 +7,47 @@
 	<title>{% if pageTitle is defined %}{{ pageTitle }} | {% endif %}{% trans %}Lexicon of the He Rose From Death{% endtrans %}</title>
 	{% if not app.debug %}<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">{% endif %}
 	<link rel="stylesheet" href="{{ global.request.basepath }}/style.css" type="text/css" />
+	
+	<meta name="description" content="{% trans %}Lexical concordance of the songbook of the Neocatechumenal Way. Very useful for choosing songs that fit a liturgical celebration.{% endtrans %}" />
+
+	{# add analytics and OG tags here #}
+
 </head>
 
 <body class="{{ bodyClass|default() }}">
 
-	<header class="main-header">
-		<div class="inside">
-			
-			<h2><a href="{{ path('home') }}">{% trans %}Lexicon <strong>He Rose</strong>{% endtrans %}</a></h2>
+	<div class="wrapper">
 
-			<nav class="language">
-				<a href="{{ path('home', {'_locale': app.locale == 'es' ? 'en' : 'es'}) }}">{% if app.locale == 'es' %}<span class="tiny-invisible">View in </span>English{% else %}<span class="tiny-invisible">Ver en </span>español{% endif %}</a>
-			</nav>
-		</div>
+		<header class="main-header">
+			<div class="inside">
+				
+				<h2><a href="{{ path('home') }}">{% trans %}Lexicon <strong>He Rose</strong>{% endtrans %}</a></h2>
 
-	</header>
+				<nav class="language">
+					<a href="{{ path('home', {'_locale': app.locale == 'es' ? 'en' : 'es'}) }}">{% if app.locale == 'es' %}<span class="tiny-invisible">View in </span>English{% else %}<span class="tiny-invisible">Ver en </span>español{% endif %}</a>
+				</nav>
+			</div>
 
-	{# <table width="100%" style="color: white">
-		<tr>
-		<td bgcolor=E6E2AF style="height: 40px">E6E2AF</td>
-		<td bgcolor=A7A37E style="height: 40px">A7A37E</td>
-		<td bgcolor=EFECCA style="height: 40px">EFECCA</td>
-		<td bgcolor=046380 style="height: 40px">046380</td>
-		<td bgcolor=002F2F style="height: 40px">002F2F</td>
-		</tr>
-	</table>
-
-	<table width="100%" style="color: white">
-		<tr>
-		<td bgcolor=E6E2AF style="height: 3px"></td>
-		<td bgcolor=A7A37E style="height: 3px"></td>
-		<td bgcolor=EFECCA style="height: 3px"></td>
-		<td bgcolor=046380 style="height: 3px"></td>
-		<td bgcolor=002F2F style="height: 3px"></td>
-		</tr>
-	</table> #}
+		</header>
 
 {% block content %}{% endblock %}
 
-	{# <footer class="main-footer">
-		<div class="inside">
-			Free software crafted in Tanzania.
-		</div>
-	</footer> #}
+		<div class="push"></div>
+	</div>
+
+	<footer class="main-footer">
+		Free software <a href="http://github.com/isra00/resucilex">crafted</a> in Tanzania. 
+		<a href="javascript:void(0)" onclick="go()">Contact the author</a>.
+	</footer>
+
+	<script>
+	function go() {
+		var s="el señor es mi pastor, nada me falta. En prados de fresca hierba...",
+		 p=[14,4,8,17],p2=[13,25,14,34,37,56,46,29],n=parseInt(1-1);
+		function join(ps){var r="";for(i in ps){r += s.substr(ps[i]-1,1);}return r;}
+		alert(join(p)+n+n+String.fromCharCode(Math.pow(2,6))+'g'+join(p2));
+	}
+	</script>
 
 </body>
 </html>

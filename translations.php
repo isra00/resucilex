@@ -6,6 +6,9 @@ return [
 		//base.twig
 		'Lexicon of the He Rose From Death'
 		=> 'Léxico del Resucitó',
+
+		'Lexical concordance of the songbook of the Neocatechumenal Way. Very useful for choosing songs that fit a liturgical celebration.'
+		=> 'Concordancia léxica del libro de cantos del Camino Neocatecumenal, útil para elegir cantos apropiados para una celebración litúrgica.',
 		
 		'Lexicon <strong>He Rose</strong>'
 		=> 'Léxico <strong>Resucitó</strong>',
