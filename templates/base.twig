@@ -10,7 +10,7 @@
 	
 	<meta name="description" content="{% trans %}Lexical concordance of the songbook of the Neocatechumenal Way. Very useful for choosing songs that fit a liturgical celebration.{% endtrans %}" />
 
-	{# add analytics and OG tags here #}
+	{# add analytics and OG tags here, and meta tag translation for home, list, etc. #}
 
 </head>
 
@@ -35,10 +35,12 @@
 		<div class="push"></div>
 	</div>
 
+{% if not noFooter is defined %}
 	<footer class="main-footer">
 		{% trans with { '%url%': 'http://github.com/isra00/resucilex' } %}Free software <a href="%url%">crafted</a> in Tanzania.{% endtrans %}
 		<a href="javascript:void(0)" onclick="go()">{% trans %}Contact the author{% endtrans %}</a>.
 	</footer>
+{% endif %}
 
 	<script>
 	function go() {

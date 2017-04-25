@@ -62,7 +62,8 @@ SQL;
 			'songs' 			=> $songs, 
 			'total_occurences' 	=> $totalOccurences, 
 			'bodyClass' 		=> 'full-width', 
-			'pageTitle'			=> $word4print
+			'pageTitle'			=> $word4print,
+			'noFooter'			=> true
 		]);
 	}
 }
