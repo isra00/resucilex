@@ -1,9 +1,9 @@
 /**
- * Arena oscuro: E6E2AF
- * Arena claro:  EFECCA
- * Marrón: 		 A7A37E
- * Azul: 		 046380
- * Verde: 		 002F2F
+ * Dark sand:	E6E2AF
+ * Light sand:	EFECCA
+ * Brown:		A7A37E
+ * Navy blue:	046380
+ * Dark green:	002F2F
  */
 
 html, body {
@@ -396,7 +396,9 @@ p {
 	display: none;
 }
 
-
+/*
+ * Small screens, such as mobile phones
+ */
 @media only screen and (max-width: 40rem) {
 
 	.wrapper {
@@ -408,7 +410,7 @@ p {
 	.main-footer {
 		height: auto;
 		max-height: none;
-		line-height: 150%;
+		line-height: 155%;
 		padding: .5em .2em;
 		letter-spacing: .03em;
 		font-size: .8em;
@@ -442,7 +444,9 @@ p {
 }
 
 
-/* word.twig is medium size */
+/* 
+ * word.twig is medium size 
+ */
 @media only screen and (max-width: 60rem) {
 
 	.big-only {

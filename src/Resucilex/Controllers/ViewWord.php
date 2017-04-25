@@ -17,11 +17,15 @@ GROUP BY id_song
 ORDER BY page
 SQL;
 		$app['db']->exec("SET sql_mode = ''");
-		$songs = $app['db']->fetchAll($sql, [$app['id_lang'], $word, $app['id_lang']]);
+		
+		$songs = $app['db']->fetchAll(
+			$sql, 
+			[$app['id_lang'], $word, $app['id_lang']]
+		);
 
 		if (!$songs)
 		{
-			$app->abort(404, "The word you have written does not appear in the songbook even once.");
+			$app->abort(404, "The word you are looking for is not in the index.");
 		}
 
 		$totalOccurences = 0;
@@ -40,14 +44,18 @@ SQL;
 			);
 
 			//Remove the initial and ending # added above.
-			$song['text'] = mb_substr($song['text'], 1, mb_strlen($song['text']) - 2);
+			$song['text'] = mb_substr(
+				$song['text'], 
+				1, 
+				mb_strlen($song['text']) - 2
+			);
 
 			$song['occurences'] = $occurences;
 
 			$totalOccurences += $occurences;
 		}
 
-		$word4print = $songs[0]['isProper'] ? $this->mbUcFirst($word) : $word;
+		$word4print = $songs[0]['isProper'] ? $app['mbUcFirst']($word) : $word;
 
 		return $app['twig']->render('word.twig', [
 			'word' 				=> $word4print, 
@@ -56,13 +64,5 @@ SQL;
 			'bodyClass' 		=> 'full-width', 
 			'pageTitle'			=> $word4print
 		]);
-	}
-
-	/**
-	 * Copied from Twig_Extension_Core::twig_capitalize_string_filter()
-	 */
-	protected function mbUcFirst($string)
-	{
-		return mb_strtoupper(mb_substr($string, 0, 1)).mb_strtolower(mb_substr($string, 1, mb_strlen($string)));
 	}
 }

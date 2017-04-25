@@ -16,7 +16,11 @@ GROUP BY lemma, id_song
 ORDER BY lemma, song.title
 SQL;
 		$app['db']->exec("SET sql_mode = ''");
-		$wordsSongs = $app['db']->fetchAll($sql, [$app['id_lang'], $app['id_lang']]);
+		
+		$wordsSongs = $app['db']->fetchAll(
+			$sql, 
+			[$app['id_lang'], $app['id_lang']]
+		);
 
 		if (!$wordsSongs)
 		{
@@ -32,7 +36,7 @@ SQL;
 
 			if ($wordSong['isProper'])
 			{
-				$wordSong['lemma'] = $this->mbUcFirst($wordSong['lemma']);
+				$wordSong['lemma'] = $app['mbUcFirst']($wordSong['lemma']);
 			}
 		}
 
@@ -40,14 +44,5 @@ SQL;
 			'wordsSongs' => $wordsSongs,
 			'pageTitle'	 => $app['translator']->trans('Summary')
 		]);
-	}
-
-	/**
-	 * Copied from Twig_Extension_Core::twig_capitalize_string_filter()
-	 * @todo ELIMINAR ESTA DUPLICIDAD DE CÓDIGO (ViewWord)
-	 */
-	protected function mbUcFirst($string)
-	{
-		return mb_strtoupper(mb_substr($string, 0, 1)).mb_strtolower(mb_substr($string, 1, mb_strlen($string)));
 	}
 }

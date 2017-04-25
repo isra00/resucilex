@@ -10,7 +10,11 @@ class ViewList
 
 		foreach ($words as &$word)
 		{
-			$word['firstLetter'] = iconv("utf-8", "ascii//TRANSLIT", mb_substr($word['word'], 0, 1));
+			$word['firstLetter'] = iconv(
+				"utf-8", 
+				"ascii//TRANSLIT", 
+				mb_substr($word['word'], 0, 1)
+			);
 		}
 
 		return $app['twig']->render('list.twig', [
@@ -64,8 +68,13 @@ WHERE lemma.id_lang = ?
 GROUP BY lemma
 ORDER BY lemma
 SQL;
+		
 		$app['db']->exec("SET sql_mode = ''");
-		$words = $app['db']->fetchAll($sql, [$app['id_lang'], $app['id_lang'], $app['id_lang']]);
+		
+		$words = $app['db']->fetchAll(
+			$sql, 
+			[$app['id_lang'], $app['id_lang'], $app['id_lang']]
+		);
 
 		if (!$words)
 		{

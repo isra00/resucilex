@@ -29,9 +29,19 @@ $app->register(new \Silex\Provider\DoctrineServiceProvider(), array(
 
 $app['debug'] = $app['config']['debug'];
 
+$app['mbUcFirst'] = $app->protect(function ($string) {
+	return mb_strtoupper(mb_substr($string, 0, 1))
+	. mb_strtolower(mb_substr($string, 1, mb_strlen($string)));
+});
+
 
 $app->before(function (Request $req, Application $app) {
-	$locale = $app['db']->fetchColumn('SELECT locale FROM lang WHERE short = ?', [$app['locale']]);
+	
+	$locale = $app['db']->fetchColumn(
+		'SELECT locale FROM lang WHERE short = ?', 
+		[$app['locale']]
+	);
+	
 	setLocale(LC_COLLATE, $locale . '.utf8');
 	setLocale(LC_CTYPE,   $locale . '.utf8');
 
@@ -51,11 +61,18 @@ $app->get('/', function(Request $req) use ($app)
 	));
 });
 
+
 $app->get('/{_locale}', function() use ($app) 
 {
-	$total = $app['db']->fetchColumn('SELECT COUNT(DISTINCT lemma) FROM lemma WHERE id_lang = ?', [$app['id_lang']]);
+	$total = $app['db']->fetchColumn(
+		'SELECT COUNT(DISTINCT lemma) FROM lemma WHERE id_lang = ?', 
+		[$app['id_lang']]
+	);
+	
 	return $app['twig']->render('home.twig', ['total' => $total]);
+
 })->bind('home');
+
 
 $app->get('/{_locale}/list', "Resucilex\\Controllers\\ViewList::getList")
 	->bind('list');
