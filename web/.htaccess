@@ -2,6 +2,19 @@
 	Options -MultiViews
 	RewriteEngine On
 
+	# Redirect to disk-cached version
 	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule ^ index.php [QSA,L]
+	RewriteCond %{REQUEST_URI} !=/
+	RewriteCond %{QUERY_STRING} =""
+	RewriteCond "%{DOCUMENT_ROOT}/cache/%{REQUEST_URI}" -f
+	RewriteRule .* cache/%{REQUEST_URI} [QSA,NE,L] 
+
+	# If the user requests the cached file
+	#RewriteCond %{REQUEST_FILENAME} -f
+	#RewriteRule ^cache(.*)$ $1 [L,R=301]
+
+	# If not cached, run Silex app
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule !^/cache index.php [QSA,L]
+
 </IfModule>

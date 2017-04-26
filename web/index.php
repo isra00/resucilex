@@ -3,6 +3,7 @@
 require '../vendor/autoload.php';
 
 use \Symfony\Component\HttpFoundation\Request;
+use \Symfony\Component\HttpFoundation\Response;
 use \Silex\Application;
 
 $app = new Application;
@@ -48,6 +49,29 @@ $app->before(function (Request $req, Application $app) {
 	$app['id_lang'] = $app['config']['lang'][$app['locale']];
 });
 
+/**
+ * Disk-based, static, full-output cache system. 
+ * It does not work without proper Apache config (see .htaccess)
+ */
+$app->after(function(Request $request, Response $response)
+{
+	if (200 == $response->getStatusCode())
+	{
+		$reqUri = urldecode($request->getPathInfo());
+		$cacheFile = __DIR__ . '/cache' . $reqUri;
+		
+		if (!file_exists(dirname($cacheFile)))
+		{
+			mkdir(dirname($cacheFile), 0777, true);
+		}
+
+		if (!file_exists($cacheFile))
+		{
+			file_put_contents($cacheFile, $response->getContent() . "<!-- cached " . date('r') . " -->");
+		}
+	}
+});
+
 
 $app->get('/', function(Request $req) use ($app)
 {
@@ -62,7 +86,7 @@ $app->get('/', function(Request $req) use ($app)
 });
 
 
-$app->get('/{_locale}', function() use ($app) 
+$app->get('/{_locale}-home', function() use ($app) 
 {
 	$total = $app['db']->fetchColumn(
 		'SELECT COUNT(DISTINCT lemma) FROM lemma WHERE id_lang = ?', 
