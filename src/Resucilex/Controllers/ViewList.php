@@ -66,7 +66,7 @@ JOIN (
 ) words ON words.word = lemma.word
 WHERE lemma.id_lang = ?
 GROUP BY lemma
-ORDER BY lemma
+ORDER BY lemma.lemma COLLATE utf8_general_ci
 SQL;
 		
 		$app['db']->exec("SET sql_mode = ''");
