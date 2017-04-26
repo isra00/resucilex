@@ -309,7 +309,6 @@ p {
 		.song-list li {
 			padding: 0 .5em 0 1.2rem;
 			border-bottom: 1px solid #A7A37E;
-			line-height: 200%;
 		}
 			.song-list li:first-child {
 				border-top: 1px solid #A7A37E;
@@ -320,6 +319,7 @@ p {
 			.song-list li a {
 				display: block;
 				position: relative;
+				padding: .4em 0;
 			}
 			.song-list li small {
 				float: right;
@@ -344,6 +344,9 @@ p {
 		max-width: 40em;
 		margin: 0 auto 2em;
 		text-align: center;
+	}
+	.page-cloud .main-footer {
+		background: #002F2F;
 	}
 
 .cloud {
@@ -502,7 +505,7 @@ p {
 /*
  * Very narrow screens
  */
-@media only screen and (max-width: 22rem) {
+@media only screen and (max-width: 23rem) {
 
 	.tiny-invisible {
 		display: none;
