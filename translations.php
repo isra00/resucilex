@@ -45,11 +45,14 @@ return [
 		'All words'
 		=> 'Todas las palabras',
 
+		'Words of Leon-Dufour'
+		=> 'Palabras del Leon-Dufour',
+
 		'Totaling %total%'
 		=> '%total% en total',
 
 		//word.twig
-		'Songs where the word <strong>%word%</strong> appears:'
+		'Songs with the word <strong>%word%</strong>:'
 		=> 'Cantos con la palabra <strong>%word%</strong>:',
 
 		'appears <strong>%total_occurences%</strong> times in <strong>%total_songs%</strong> song(s)'

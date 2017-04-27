@@ -98,7 +98,8 @@ $app->get('/{_locale}', function() use ($app)
 })->bind('home');
 
 
-$app->get('/{_locale}/list', "Resucilex\\Controllers\\ViewList::getList")
+$app->get('/{_locale}/list/{dufour}', "Resucilex\\Controllers\\ViewList::getList")
+	->value('dufour', false)
 	->bind('list');
 
 $app->get('/{_locale}/summary', "Resucilex\\Controllers\\ViewSummary::get")

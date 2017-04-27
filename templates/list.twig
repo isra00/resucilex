@@ -4,7 +4,14 @@
 
 	<section class="main list">
 		
-		<h1>{% trans %}All words{% endtrans %}</h1>
+		<h1>
+			{% if dufour %}
+				{% trans %}Words of Leon-Dufour{% endtrans %}
+			{% else %}
+				{% trans %}All words{% endtrans %}
+			{% endif %}
+		</h1>
+		
 		<h5>{% trans with { '%total%': words|length } %}Totaling %total%{% endtrans %}</h5>
 
 		<article class="list-words">

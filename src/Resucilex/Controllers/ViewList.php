@@ -4,9 +4,9 @@ namespace Resucilex\Controllers;
 
 class ViewList
 {
-	public function getList(\Silex\Application $app)
+	public function getList(\Silex\Application $app, $dufour=false)
 	{
-		$words = $this->fetchWords($app);
+		$words = $this->fetchWords($app, $dufour);
 
 		foreach ($words as &$word)
 		{
@@ -18,8 +18,9 @@ class ViewList
 		}
 
 		return $app['twig']->render('list.twig', [
-			'words' => $words, 
-			'pageTitle' => $app['translator']->trans('All words')
+			'words' 	=> $words, 
+			'pageTitle' => $app['translator']->trans('All words'),
+			'dufour' 	=> $dufour
 		]);
 	}
 
@@ -50,7 +51,7 @@ class ViewList
 		]);
 	}
 
-	protected function fetchWords(\Silex\Application $app)
+	protected function fetchWords(\Silex\Application $app, $dufour=false)
 	{
 		$sql = <<<SQL
 SELECT lemma.lemma, isProper, SUM(word_occurences) occurences
@@ -64,12 +65,19 @@ JOIN (
 	GROUP BY word
 	ORDER BY word
 ) words ON words.word = lemma.word
+#
 WHERE lemma.id_lang = ?
 GROUP BY lemma
 ORDER BY lemma.lemma COLLATE utf8_general_ci
 SQL;
-		
+
 		$app['db']->exec("SET sql_mode = ''");
+		
+		$sql = str_replace(
+			'#', 
+			$dufour ? 'JOIN dufour ON dufour.lemma = lemma.lemma AND dufour.id_lang = ' . $app['id_lang'] : '', 
+			$sql
+		);
 		
 		$words = $app['db']->fetchAll(
 			$sql, 
@@ -78,7 +86,7 @@ SQL;
 
 		if (!$words)
 		{
-			$app->abort(404, "The language does not exist");
+			$app->abort(404, "No words found");
 		}
 
 		foreach ($words as &$word)
