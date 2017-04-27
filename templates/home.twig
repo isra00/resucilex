@@ -18,7 +18,7 @@
 			<h3>{% trans with {'%total%': total} %}Explore words <small>(%total%)</small>{% endtrans %}</h3>
 			<ul>
 				<li>&rarr; <a href="{{ path('list') }}">{% trans %}Display list of words{% endtrans %}</a></li>
-				{% if app.locale == 'es' %}<li>&rarr; <a href="{{ path('list', { 'dufour': true }) }}">{% trans %}Ver solo palabras del Leon-Dufour{% endtrans %}</a></li>{% endif %}
+				{% if app.locale == 'es' %}<li>&rarr; <a href="{{ path('list', { 'dufour': 'dufour' }) }}">{% trans %}Ver solo palabras del Leon-Dufour{% endtrans %}</a></li>{% endif %}
 				<li>&rarr; <a href="{{ path('summary') }}">{% trans %}Display as summary{% endtrans %}</a></li>
 				<li>&rarr; <a href="{{ path('tagcloud') }}">{% trans %}Display as word cloud{% endtrans %}</a></li>
 			</ul>
