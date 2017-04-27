@@ -58,7 +58,7 @@ $app->after(function(Request $request, Response $response)
 	if (200 == $response->getStatusCode())
 	{
 		$reqUri = urldecode($request->getPathInfo());
-		$cacheFile = __DIR__ . '/cache' . $reqUri;
+		$cacheFile = __DIR__ . '/cache' . $reqUri . '.html';
 		
 		if (!file_exists(dirname($cacheFile)))
 		{
