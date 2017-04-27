@@ -8,16 +8,18 @@
 		<h5>{% trans with { '%total%': words|length } %}Totaling %total%{% endtrans %}</h5>
 
 		<article class="list-words">
-		{% for word in words %}
+		{%- for word in words -%}
 
-			{% if loop.first or word.firstLetter != words[loop.index0 - 1].firstLetter %}
+			{%- if loop.first or word.firstLetter != words[loop.index0 - 1].firstLetter -%}
+			{%- if not loop.first %}</span>{%- endif -%}
 			<h3>{{ word.firstLetter|upper }}</h3>
-			{% else %}
-			·
-			{% endif %}
-			<a href="{{ path('word', {_locale: app.locale, word: word.word}) }}">{{ word.isProper ? word.word|capitalize : word.word }} <small>({{ word.occurences }})</small></a>
-
-		{% endfor %}
+			{%- else -%}
+			·</span>
+			{%- endif %}
+			<span><a href="{{ path('word', {_locale: app.locale, word: word.word}) }}">{{ word.isProper ? word.word|capitalize : word.word }} <small>({{ word.occurences }})</small></a>
+			{% if loop.last %}</span>{%- endif -%}
+				
+		{% endfor -%}
 		</article>
 
 	</section>
