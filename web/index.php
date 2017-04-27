@@ -86,7 +86,7 @@ $app->get('/', function(Request $req) use ($app)
 });
 
 
-$app->get('/{_locale}-home', function() use ($app) 
+$app->get('/{_locale}', function() use ($app) 
 {
 	$total = $app['db']->fetchColumn(
 		'SELECT COUNT(DISTINCT lemma) FROM lemma WHERE id_lang = ?', 

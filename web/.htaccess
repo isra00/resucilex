@@ -3,11 +3,11 @@
 	RewriteEngine On
 
 	# Redirect to disk-cached version
-	#RewriteCond %{REQUEST_FILENAME} !-f
-	#RewriteCond %{REQUEST_URI} !=/
-	#RewriteCond %{QUERY_STRING} =""
-	#RewriteCond "%{DOCUMENT_ROOT}/cache/%{REQUEST_URI}.html" -f
-	#RewriteRule .* cache/%{REQUEST_URI}.html [QSA,NE,L] 
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_URI} !=/
+	RewriteCond %{QUERY_STRING} =""
+	RewriteCond "%{DOCUMENT_ROOT}/cache/%{REQUEST_URI}.html" -f
+	RewriteRule .* cache/%{REQUEST_URI}.html [QSA,NE,L] 
 
 	# If the user requests the cached file
 	#RewriteCond %{REQUEST_FILENAME} -f
