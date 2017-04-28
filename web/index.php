@@ -92,10 +92,12 @@ $app->get('/{_locale}', function() use ($app)
 		'SELECT COUNT(DISTINCT lemma) FROM lemma WHERE id_lang = ?', 
 		[$app['id_lang']]
 	);
-	
+
 	return $app['twig']->render('home.twig', ['total' => $total]);
 
-})->bind('home');
+})
+	->assert('_locale', implode('|', array_column($app['config']['lang'], 'short')))
+	->bind('home');
 
 
 $app->get('/{_locale}/list/{dufour}', "Resucilex\\Controllers\\ViewList::getList")
