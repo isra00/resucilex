@@ -32,4 +32,9 @@ return array(
 	],
 
 	'debug' => true,
+
+	// FEATURE FLAGS
+	'feature_show_pos' 		=> false,
+	'feature_show_related' 	=> false,
+
 );

@@ -329,6 +329,38 @@ p {
 				right: 0;
 			}
 
+	.view-word .grammar {
+		margin: 1em auto 2em;
+		max-width: 100%;
+		width: 30em;
+		padding: .7em 1em;
+		color: #444;
+		hyphens: none;
+		background: #EFECCA;
+		border-top: 2px solid #A7A37E;
+	}
+		.view-word .grammar strong {
+			color: #002F2F;
+		}
+	.view-word .pos {
+		font-weight: normal;
+		margin: 0;
+		font-size: .9em;
+	}
+	.view-word .related {
+		font-size: .9em;
+	}
+		.related #more {
+			display: none;
+		}
+		.related .show-more::before {
+			content: "... ";
+		}
+		.related .show-more {
+			font-size: .9em;
+			font-weight: bold;
+		}
+
 	.view-word .song-contents {
 		margin-left: 27em;
 	}

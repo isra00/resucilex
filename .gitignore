@@ -1,3 +1,6 @@
 vendor
-POS tagging/
+POS tagging
 smoothing cloud.ods
+.sublime-project
+.sublime-project.sublime-workspace
+web/cache

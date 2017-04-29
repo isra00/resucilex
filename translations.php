@@ -58,6 +58,12 @@ return [
 		'appears <strong>%total_occurences%</strong> times in <strong>%total_songs%</strong> song(s)'
 		=> 'Aparece <strong>%total_occurences%</strong> veces en <strong>%total_songs%</strong> canto(s)',
 
+		'Type of word:'
+		=> 'Tipo de palabra:',
+
+		'Related words:'
+		=> 'Palabras relacionadas:',
+
 		//summary.twig
 		'Summary'
 		=> 'Vista resumida',

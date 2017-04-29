@@ -7,10 +7,11 @@ class ViewWord
 	public function get(\Silex\Application $app, $word)
 	{
 		$sql = <<<SQL
-SELECT lemma.lemma, lemma.isProper, word_song.word, song.*
+SELECT lemma.lemma, pos_code.description posCode, lemma.isProper, word_song.word, song.*
 FROM word_song
 JOIN song USING (id_song)
 JOIN lemma USING (word)
+LEFT JOIN pos_code ON posTagging = code
 WHERE song.id_lang = ?
 AND lemma = ? AND lemma.id_lang = ?
 GROUP BY id_song
@@ -57,10 +58,18 @@ SQL;
 
 		$word4print = $songs[0]['isProper'] ? $app['mbUcFirst']($word) : $word;
 
+		$relateds = $app['db']->fetchAll(
+			"SELECT DISTINCT related.lemma, related.related FROM related JOIN lemma ON related.related = lemma.lemma AND related.id_lang = lemma.id_lang WHERE related.lemma = ? AND related.id_lang = ?",
+			[$word, $app['id_lang']]
+		);
+
+		$relateds = array_column($relateds, 'related');
+
 		return $app['twig']->render('word.twig', [
 			'word' 				=> $word4print, 
 			'songs' 			=> $songs, 
 			'total_occurences' 	=> $totalOccurences, 
+			'relateds' 			=> $relateds, 
 			'bodyClass' 		=> 'full-width', 
 			'pageTitle'			=> $word4print,
 			'noFooter'			=> true
