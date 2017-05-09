@@ -113,4 +113,6 @@ $app->get('/{_locale}/tagcloud', "Resucilex\\Controllers\\ViewList::getCloud")
 $app->get('/{_locale}/{word}', "Resucilex\\Controllers\\ViewWord::get")
 	->bind('word');
 
+$app->get('/sitemap.xml', "Resucilex\\Controllers\\Sitemap::get");
+
 $app->run();
