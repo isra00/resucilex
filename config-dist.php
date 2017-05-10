@@ -4,13 +4,13 @@ return array(
 
 	'db' => [
 		'host'		=> 'localhost',
-		'user'		=> 'root',
-		'password'	=> 'root',
-		'database'	=> 'resucilex',
+		'user'		=> 'your MySQL user',
+		'password'	=> 'your MySQL passwords',
+		'database'	=> 'the MySQL database',
 		'charset'	=> 'utf8'
 	],
 
-	'templates_dir'		=> __DIR__ . '/templates',
+	'templates_dir'	=> __DIR__ . '/templates',
 
 	// Replica of DB table lang for better speed
 	/** @todo Do this elegantly: some DB query and then cache */
@@ -31,7 +31,7 @@ return array(
 		'en' => 2,
 	],
 
-	'debug' => true,
+	'debug' 				=> false,
 
 	// FEATURE FLAGS
 	'feature_show_pos' 		=> false,
