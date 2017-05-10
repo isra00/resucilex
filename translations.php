@@ -19,6 +19,9 @@ return [
 		'Contact the author'
 		=> 'Contacto del autor',
 
+		'lexicon of neocatechumenal songs, words of neocatechumenal songs, songs of the way, songs of neocatechumenal way'
+		=> 'léxico de cantos neocatecumenales, palabras de cantos neocatecumenales, cantos del camino, cantos del camino neocatecumenal',
+
 		//home.twig
 		'Lexicon <small>of the</small> <strong>HE ROSE FROM DEATH</strong>'
 		=> 'Léxico <small>del</small> <strong>RESUCITÓ</strong>',

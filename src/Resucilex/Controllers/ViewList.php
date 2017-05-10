@@ -34,8 +34,8 @@ class ViewList
 
 		foreach ($words as $i=>&$word)
 		{
-			$word['color'] = $colors[$i % count($colors)];
-			$word['size'] = ($word['occurences'] / $max) * 100 + 12;
+			$word['color'] 	 = $colors[$i % count($colors)];
+			$word['size'] 	 = ($word['occurences'] / $max) * 100 + 12;
 			$word['opacity'] = $word['occurences'] > 2 ? 1 : .5;
 			
 			if ($word['occurences'] > 2)
@@ -45,7 +45,7 @@ class ViewList
 		}
 
 		return $app['twig']->render('cloud.twig', [
-			'words' => $words, 
+			'words' 	=> $words, 
 			'bodyClass' => 'page-cloud full-width',
 			'pageTitle' => 'Word cloud'
 		]);
@@ -78,7 +78,7 @@ SQL;
 			$dufour ? 'JOIN dufour ON dufour.lemma = lemma.lemma AND dufour.id_lang = ' . $app['id_lang'] : '', 
 			$sql
 		);
-		
+
 		$words = $app['db']->fetchAll(
 			$sql, 
 			[$app['id_lang'], $app['id_lang'], $app['id_lang']]

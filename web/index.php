@@ -35,7 +35,6 @@ $app['mbUcFirst'] = $app->protect(function ($string) {
 	. mb_strtolower(mb_substr($string, 1, mb_strlen($string)));
 });
 
-
 $app->before(function (Request $req, Application $app) {
 	
 	$locale = $app['db']->fetchColumn(
@@ -47,28 +46,43 @@ $app->before(function (Request $req, Application $app) {
 	setLocale(LC_CTYPE,   $locale . '.utf8');
 
 	$app['id_lang'] = $app['config']['lang'][$app['locale']];
+
+	$app['absoluteUriWithoutQuery'] = $req->getScheme()
+		. '://'
+		. $req->getHttpHost()
+		. strtok($req->getRequestUri(), '?');
+
+	$app['absoluteBasePath'] = $req->getScheme()
+		. '://'
+		. $req->getHttpHost()
+		. $req->getBasePath();
 });
 
 /**
- * Disk-based, static, full-output cache system. 
+ * Disk-based, full-output cache system. 
  * It does not work without proper Apache config (see .htaccess)
  */
 $app->after(function(Request $request, Response $response)
 {
-	if (200 == $response->getStatusCode())
+	if (200 != $response->getStatusCode())
 	{
-		$reqUri = urldecode($request->getPathInfo());
-		$cacheFile = __DIR__ . '/cache' . $reqUri . '.html';
-		
-		if (!file_exists(dirname($cacheFile)))
-		{
-			mkdir(dirname($cacheFile), 0777, true);
-		}
+		return;
+	}
 
-		if (!file_exists($cacheFile))
-		{
-			file_put_contents($cacheFile, $response->getContent() . "<!-- cached " . date('r') . " -->");
-		}
+	$reqUri = urldecode($request->getPathInfo());
+	$cacheFile = __DIR__ . '/cache' . $reqUri . '.html';
+	
+	if (!file_exists(dirname($cacheFile)))
+	{
+		mkdir(dirname($cacheFile), 0777, true);
+	}
+
+	if (!file_exists($cacheFile))
+	{
+		file_put_contents(
+			$cacheFile, 
+			$response->getContent() . "<!-- cached " . date('r') . " -->"
+		);
 	}
 });
 

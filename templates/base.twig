@@ -9,6 +9,14 @@
 	<link rel="stylesheet" href="{{ global.request.basepath }}/style.css" type="text/css" />
 	
 	<meta name="description" content="{% trans %}Lexical concordance of the songbook of the Neocatechumenal Way. Very useful for choosing songs that fit a liturgical celebration.{% endtrans %}" />
+	<meta name="keywords" content="{% trans %}lexicon of neocatechumenal songs, words of neocatechumenal songs, songs of the way, songs of neocatechumenal way{% endtrans %}" />
+
+	<meta property="og:url" content="{{ app.absoluteUriWithoutQuery }}">
+	<meta property="og:title" content="{% if pageTitle is defined %}{{ pageTitle }} | {% endif %}{% trans %}Lexicon of the He Rose From Death{% endtrans %}">
+	<meta property="og:description" content="{% trans %}Lexical concordance of the songbook of the Neocatechumenal Way. Very useful for choosing songs that fit a liturgical celebration.{% endtrans %}">
+	<meta property="og:site_name" content="{% trans %}Lexicon of the He Rose From Death{% endtrans %}">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="{{ app.absoluteBasePath }}/mkt-{{ app.locale}}.200.png">
 
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -20,8 +28,6 @@
 	  ga('send', 'pageview');
 
 	</script>
-
-	{# add analytics and OG tags here, and meta tag translation for home, list, etc. #}
 
 </head>
 
