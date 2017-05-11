@@ -25,7 +25,7 @@
 			{%- endif %}
 			<span><a href="{{ path('word', {_locale: app.locale, word: word.word}) }}">{{ word.isProper ? word.word|capitalize : word.word }} <small>({{ word.occurences }})</small></a>
 			{% if loop.last %}</span>{%- endif -%}
-				
+
 		{% endfor -%}
 		</article>
 
