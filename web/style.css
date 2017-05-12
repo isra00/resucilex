@@ -524,12 +524,17 @@ p {
 	}
 
 	.song {
-		padding: .7em .9em;
+		padding: .2em .9em .7em;
 		font-size: .9em;
 		width: auto;
 	}
 		.song .page {
-			font-size: 1.4em;
+			font-size: 1.3em;
+			display: block;
+			float: none;
+			text-align: right;
+			padding-bottom: 0;
+			padding-top: .2em;
 		}
 }
 
