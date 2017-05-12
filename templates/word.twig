@@ -16,7 +16,7 @@
 				<ul>
 					{% for song in songs %}
 					<li>
-						<a href="{{ word }}#song{{ song.id_song }}">
+						<a href="{{ word|lower }}#song{{ song.id_song }}">
 						{{ song.title }}
 						<small>{{ song.occurences }}</small></a>
 					</li>
