@@ -5,7 +5,7 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-CREATE TABLE `dufour` (
+DROP TABLE dufour; CREATE TABLE dufour (
   `word` varchar(50) NOT NULL,
   `lemma` varchar(50) DEFAULT NULL,
   `id_lang` mediumint(8) unsigned NOT NULL,
@@ -352,7 +352,7 @@ INSERT INTO `dufour` (`word`, `lemma`, `id_lang`) VALUES
 ('voluntad',  'voluntad', 1),
 ('yahveh',  'yahveh', 1);
 
-CREATE TABLE `lang` (
+DROP TABLE lang; CREATE TABLE lang (
   `id_lang` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `short` char(3) NOT NULL,
@@ -364,7 +364,7 @@ INSERT INTO `lang` (`id_lang`, `name`, `short`, `locale`) VALUES
 (1, 'Español',  'es', 'es_ES'),
 (2, 'English',  'en', 'en_GB');
 
-CREATE TABLE `lemma` (
+DROP TABLE lemma; CREATE TABLE lemma (
   `word` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'as in word_song',
   `lemma` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'not inflected form of the word',
   `isProper` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '1 if it is a proper noun',
@@ -6637,7 +6637,7 @@ INSERT INTO `lemma` (`word`, `lemma`, `isProper`, `posTagging`, `id_lang`) VALUE
 ('ill-treat', 'ill-treat',  0,  NULL, 2),
 ('new-born',  'newborn',  0,  NULL, 2);
 
-CREATE TABLE `lemma_review_es` (
+DROP TABLE lemma_review_es; CREATE TABLE lemma_review_es (
   `word` varchar(50) NOT NULL,
   `lemma` varchar(50) NOT NULL,
   `tt_word_pos` varchar(50) NOT NULL,
@@ -10305,7 +10305,7 @@ INSERT INTO `lemma_review_es` (`word`, `lemma`, `tt_word_pos`, `tt_lemma_pos`, `
 ('zarza', 'zarza',  'VERB.Ind.Sing.3.Pres.Fin', 'NOUN.Fem.Sing',  '<unknown>',  '<unknown>'),
 ('maná',  'maná', 'PROPN',  'VERB.Ind.Sing.3.Fut.Fin',  '<unknown>',  '<unknown>');
 
-CREATE TABLE `pos_code` (
+DROP TABLE pos_code; CREATE TABLE pos_code (
   `code` varchar(10) NOT NULL,
   `description` varchar(40) NOT NULL,
   `id_lang` mediumint(8) unsigned NOT NULL,
@@ -10350,7 +10350,7 @@ INSERT INTO `pos_code` (`code`, `description`, `id_lang`) VALUES
 ('WRB', 'Wh-adverb',  2),
 ('PP$', 'Possessive pronoun', 2);
 
-CREATE TABLE `related` (
+DROP TABLE related; CREATE TABLE related (
   `lemma` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `related` varchar(100) NOT NULL,
   `id_lang` mediumint(8) unsigned NOT NULL,
@@ -10358,7 +10358,7 @@ CREATE TABLE `related` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='English synonyms are taken from dict-moby-thesaurus 1.0-6.3 Ubuntu package';
 
 
-CREATE TABLE `song` (
+DROP TABLE song; CREATE TABLE song (
   `id_song` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(80) NOT NULL,
   `subtitle` varchar(150) NOT NULL,
@@ -10826,7 +10826,7 @@ INSERT INTO `song` (`id_song`, `title`, `subtitle`, `page`, `text`, `id_lang`) V
 (894, 'Praise the Lord',  '', 57, 'Praise the Lord,\nall peoples of the earth,\nall nations give him glory!\nFor strong is his love for us,\nand his faithfulness lasts for ever,\nall nations give him glory!\nPraise the Lord…\nFor great is his love for us,\nand his mercy is everlasting,\nall nations give him glory!\nPraise the Lord…', 2),
 (779, 'I want to go to Jerusalem',  '', 217,  'I want to go, mother,\nto Jerusalem, Jerusalem,\nto eat, to eat the herbs,\nto, to fill myself with them,\nto fill myself with them.\nIn the path I find myself,\nin the path I’m walking.\nin the path of all the world,\nof all the world.\nLet me eat of them,\nso I can fulfil my longings –\nthat are longings for friendship,\nthat are longings for meekness,\nthat are longings, that are longings for obedience.\nIn the path I find myself,\nin the path I’m walking.\nin the path of all the world,\nof all the world.',  2);
 
-CREATE TABLE `word_song` (
+DROP TABLE word_song; CREATE TABLE word_song (
   `word` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'as it appears in the songbook',
   `id_song` int(10) unsigned NOT NULL,
   KEY `word` (`word`)
