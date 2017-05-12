@@ -4,6 +4,11 @@ namespace Resucilex\Controllers;
 
 class ViewWord
 {
+	/**
+	 * Known issue: This algorithm, as it is, selects one word per lemma per 
+	 * song. So if it happens that one song has two words under the same lemma, 
+	 * only one word will be counted and highlighted.
+	 */
 	public function get(\Silex\Application $app, $word)
 	{
 		$sql = <<<SQL
