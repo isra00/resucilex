@@ -5,7 +5,7 @@
 	# Redirect to disk-cached version
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_URI} !=/
-	RewriteCond %{QUERY_STRING} =""
+	RewriteCond %{QUERY_STRING} !=nocache
 	RewriteCond "%{DOCUMENT_ROOT}/cache/%{REQUEST_URI}.html" -f
 	RewriteRule .* cache/%{REQUEST_URI}.html [QSA,NE,L] 
 
