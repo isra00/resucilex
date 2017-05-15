@@ -33,7 +33,7 @@ class Sitemap
 				$urls[] = array(
 					'loc' 			=> $app['url_generator']->generate(
 						$url, 
-						['_locale' => $lang], 
+						['_locale' => $lang],
 						UrlGeneratorInterface::ABSOLUTE_URL
 					),
 					'priority' 		=> 1,

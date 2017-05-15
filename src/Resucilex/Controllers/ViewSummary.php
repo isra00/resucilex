@@ -42,7 +42,8 @@ SQL;
 
 		return $app['twig']->render('summary.twig', [
 			'wordsSongs' => $wordsSongs,
-			'pageTitle'	 => $app['translator']->trans('Integrated view')
+			'pageTitle'	 => $app['translator']->trans('Integrated view'),
+			'hrefLangs'  => $app['currentRouteWithAllLocales'],
 		]);
 	}
 }

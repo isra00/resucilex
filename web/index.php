@@ -2,9 +2,10 @@
 
 require '../vendor/autoload.php';
 
+use \Silex\Application;
 use \Symfony\Component\HttpFoundation\Request;
 use \Symfony\Component\HttpFoundation\Response;
-use \Silex\Application;
+use \Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 $app = new Application;
 $app['config'] = require __DIR__ . '/../config.php';
@@ -56,6 +57,27 @@ $app->before(function (Request $req, Application $app) {
 		. '://'
 		. $req->getHttpHost()
 		. $req->getBasePath();
+
+	//Generate URLs of the currently requested page in all locales
+	if (false !== array_search('_locale', array_keys($req->attributes->get('_route_params'))))
+	{
+		$currentRouteWithAllLocales = [];
+
+		$locales = array_column($app['config']['lang'], 'short');
+		foreach ($locales as $locale)
+		{
+			$route_params = $req->attributes->get('_route_params');
+			$route_params['_locale'] = $locale;
+
+			$currentRouteWithAllLocales[$locale] = $app['url_generator']->generate(
+				$req->attributes->get('_route'),
+				$route_params,
+				UrlGeneratorInterface::ABSOLUTE_URL
+			);
+		}
+
+		$app['currentRouteWithAllLocales'] = $currentRouteWithAllLocales;
+	}
 });
 
 /**
@@ -86,7 +108,6 @@ $app->after(function(Request $request, Response $response)
 	}
 });
 
-
 $app->get('/', function(Request $req) use ($app)
 {
 	$acceptLang = $req->getPreferredLanguage(
@@ -107,7 +128,11 @@ $app->get('/{_locale}', function() use ($app)
 		[$app['id_lang']]
 	);
 
-	return $app['twig']->render('home.twig', ['total' => $total]);
+	return $app['twig']->render('home.twig', [
+		'total' 	 => $total,
+		'bodyClass'  => 'home',
+		'hrefLangs'  => $app['currentRouteWithAllLocales'],
+	]);
 
 })
 	->assert('_locale', implode('|', array_column($app['config']['lang'], 'short')))

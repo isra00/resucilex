@@ -20,7 +20,8 @@ class ViewList
 		return $app['twig']->render('list.twig', [
 			'words' 	=> $words, 
 			'pageTitle' => $app['translator']->trans('All words'),
-			'dufour' 	=> $dufour
+			'dufour' 	=> $dufour,
+			'hrefLangs' => $app['currentRouteWithAllLocales'],
 		]);
 	}
 
@@ -47,7 +48,8 @@ class ViewList
 		return $app['twig']->render('cloud.twig', [
 			'words' 	=> $words, 
 			'bodyClass' => 'page-cloud full-width',
-			'pageTitle' => 'Word cloud'
+			'pageTitle' => 'Word cloud',
+			'hrefLangs' => $app['currentRouteWithAllLocales'],
 		]);
 	}
 
