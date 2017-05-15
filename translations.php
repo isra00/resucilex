@@ -38,8 +38,11 @@ return [
 		'Display list of words'
 		=> 'Ver lista de palabras',
 
-		'Display as summary'
-		=> 'Ver resumen con cantos',
+		'Words from the Leon-Dufour'
+		=> 'Palabras del Leon-Dufour',
+
+		'Integrated view'
+		=> 'Vista integrada',
 
 		'Display as word cloud'
 		=> 'Ver como nube de palabras',
@@ -66,10 +69,6 @@ return [
 
 		'Related words:'
 		=> 'Palabras relacionadas:',
-
-		//summary.twig
-		'Summary'
-		=> 'Vista resumida',
 
 		//cloud.twig
 		'The more times each word occurs in the songs, the bigger it is displayed. Colors are just aesthetic.'
