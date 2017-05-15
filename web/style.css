@@ -187,13 +187,13 @@ p {
 		font-weight: bold;
 	}
 
-.home nav {
+.home section nav {
 	margin-bottom: 2em;
 	line-height: 170%;
 	font-size: 1.2em;
 	color: #A7A37E;
 }
-	.home nav h3 {
+	.home section nav h3 {
 		margin-bottom: .3em;
 		border-bottom: 2px solid #E6E2AF;
 		text-transform: uppercase;
@@ -433,6 +433,10 @@ p {
 	display: none;
 }
 
+.print-only {
+	display: none;
+}
+
 /*
  * Small screens, such as mobile phones
  */
@@ -559,5 +563,84 @@ p {
 
 	.home h1 {
 		font-size: 3em;
+	}
+}
+
+/*
+ * Print
+ */
+@media only print {
+
+	.language {
+		display: none;
+	}
+
+	.main-header {
+		background: transparent;
+	}
+		.main-header h2 {
+			float: none;
+			text-align: center;
+			color: gray;
+		}
+			.main-header h2 .print-only {
+				font-family: serif;
+				font-size: .8em;
+				text-transform: none;
+				font-weight: normal;
+				font-style: italic;
+			}
+			.main-header h2 strong {
+				color: #444;
+			}
+
+
+	.wrapper {
+		min-height: none;
+	    height: auto;
+	    margin: 0 auto;
+	}
+	.push {
+		height: 0;
+		clear: both;
+	}
+
+	.main-footer {
+		height: auto;
+		max-height: none;
+		line-height: 155%;
+		padding: .5em .2em;
+		letter-spacing: .03em;
+		font-size: .8em;
+	}
+
+	/*
+	 * Home
+	 */
+	.home .main-header {
+		display: none;
+	}
+
+	/*
+	 * Word
+	 */
+	.view-word .song-list {
+		top: auto;
+		width: auto;
+		overflow-y: visible;
+		max-height: none;
+	}
+	.song {
+		border: 1px solid silver;
+		box-shadow: 0;
+		background: transparent;
+	}
+		.song .lyrics strong {
+			border: 1px solid silver;
+			padding: 0 2px;
+		}
+
+	.print-only {
+		display: inherit;
 	}
 }

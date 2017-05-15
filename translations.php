@@ -10,8 +10,8 @@ return [
 		'Lexical concordance of the songbook of the Neocatechumenal Way. Very useful for choosing songs that fit a liturgical celebration.'
 		=> 'Concordancia léxica del libro de cantos del Camino Neocatecumenal, útil para elegir cantos apropiados para una celebración litúrgica.',
 		
-		'Lexicon <strong>He Rose</strong>'
-		=> 'Léxico <strong>Resucitó</strong>',
+		'Lexicon <span class="print-only">of the</span> <strong>He Rose</strong>'
+		=> 'Léxico <span class="print-only">del</span> <strong>Resucitó</strong>',
 
 		'Free software <a href="%url%">crafted</a> in Tanzania.'
 		=> 'Software libre <a href="%url%">hecho</a> en Tanzania.',

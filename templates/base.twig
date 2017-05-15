@@ -47,7 +47,7 @@
 		<header class="main-header">
 			<div class="inside">
 				
-				<h2><a href="{{ path('home') }}">{% trans %}Lexicon <strong>He Rose</strong>{% endtrans %}</a></h2>
+				<h2><a href="{{ path('home') }}">{% trans %}Lexicon <span class="print-only">of the</span> <strong>He Rose</strong>{% endtrans %}</a></h2>
 
 				<nav class="language">
 					<a href="{{ path('home', {'_locale': app.locale == 'es' ? 'en' : 'es'}) }}">{% if app.locale == 'es' %}<span class="tiny-invisible">View in </span>English{% else %}<span class="tiny-invisible">Ver en </span>español{% endif %}</a>
@@ -62,6 +62,7 @@
 
 {% if not noFooter is defined %}
 	<footer class="main-footer">
+		<h3 class="print-only">{{ global.request.getHttpHost }}</h3>
 		{% trans with { '%url%': 'http://github.com/isra00/resucilex' } %}Free software <a href="%url%">crafted</a> in Tanzania.{% endtrans %}
 		<a href="javascript:void(0)" onclick="go()">{% trans %}Contact the author{% endtrans %}</a>.
 	</footer>
