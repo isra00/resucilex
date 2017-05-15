@@ -475,13 +475,13 @@ p {
 	}
 
 	.home h1 {
-		font-size: 3em;
+		font-size: 3.4em;
 	}
 		.home h1 small {
 			font-size: 1rem;
 		}
 		.home h1 strong {
-			font-size: .6em;
+			font-size: .5em;
 		}
 }
 
@@ -557,4 +557,7 @@ p {
 		font-size: 1.3em;
 	}
 
+	.home h1 {
+		font-size: 3em;
+	}
 }
