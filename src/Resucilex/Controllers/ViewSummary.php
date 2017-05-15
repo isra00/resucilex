@@ -13,7 +13,7 @@ JOIN song USING (id_song)
 JOIN lemma ON word_song.word = lemma.word AND lemma.id_lang = ?
 WHERE song.id_lang = ?
 GROUP BY lemma, id_song
-ORDER BY lemma, song.title
+ORDER BY lemma COLLATE utf8_general_ci, song.title COLLATE utf8_general_ci
 SQL;
 		$app['db']->exec("SET sql_mode = ''");
 		
@@ -42,7 +42,7 @@ SQL;
 
 		return $app['twig']->render('summary.twig', [
 			'wordsSongs' => $wordsSongs,
-			'pageTitle'	 => $app['translator']->trans('Summary')
+			'pageTitle'	 => $app['translator']->trans('Integrated view')
 		]);
 	}
 }
