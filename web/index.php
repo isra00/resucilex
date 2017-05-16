@@ -120,6 +120,7 @@ $app->get('/', function(Request $req) use ($app)
 	));
 });
 
+$validLocales = implode('|', array_column($app['config']['lang'], 'short'));
 
 $app->get('/{_locale}', function() use ($app) 
 {
@@ -135,21 +136,25 @@ $app->get('/{_locale}', function() use ($app)
 	]);
 
 })
-	->assert('_locale', implode('|', array_column($app['config']['lang'], 'short')))
+	->assert('_locale', $validLocales)
 	->bind('home');
 
 
 $app->get('/{_locale}/list/{dufour}', "Resucilex\\Controllers\\ViewList::getList")
 	->value('dufour', false)
+	->assert('_locale', $validLocales)
 	->bind('list');
 
 $app->get('/{_locale}/summary', "Resucilex\\Controllers\\ViewSummary::get")
+	->assert('_locale', $validLocales)
 	->bind('summary');
 
 $app->get('/{_locale}/tagcloud', "Resucilex\\Controllers\\ViewList::getCloud")
+	->assert('_locale', $validLocales)
 	->bind('tagcloud');
 
 $app->get('/{_locale}/{word}', "Resucilex\\Controllers\\ViewWord::get")
+	->assert('_locale', $validLocales)
 	->bind('word');
 
 $app->get('/sitemap.xml', "Resucilex\\Controllers\\Sitemap::get");
