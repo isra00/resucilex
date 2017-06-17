@@ -233,7 +233,7 @@ p {
  */
 .song {
 	margin: 1em auto 2em;
-	box-shadow: 1px 1px 5px silver;
+	box-shadow: 0 0 5px silver;
 	padding: 1em 1.2em;
 	background: #fcfcf7;
 	width: 30em;
