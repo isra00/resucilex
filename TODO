@@ -1,0 +1,9 @@
+↑ Script de deploy, que también borre el cache y cargue la BD.
+
+ - [BIG] Volver a pasar el TreeTagger a todo, pero pasándole los cantos al completo, para poder desambiguar teniendo el cuenta el contexto. Con eso se pueden evaluar lemmas y también sacar el POS tagging, que podría ser mostrado en Word: "amor, nombre común masculino singular".
+ - [BIG internet] En Word, mostrar o enlazar definición de la palabra (RAE o Webster, se puede automatizar), al hacer click en un enlace o algo así, en un popup.
+  dle.rae.es/?w=yelmo [parece que se han puesto duros con anti-scrap]
+ - [BIG internet] Buscar más sinónimos haciendo scrapping de alguna web con las palabras de nuestra BD.
+ - En List, poner un autocompletado que, al click, entra en Word.
+
+↓ Usar el componente Asset de Silex? https://symfony.com/doc/current/components/asset/introduction.html
