@@ -27,9 +27,9 @@ class ViewListController extends \Illuminate\Routing\Controller
 		]);
 	}
 
-	public function getCloud($app)
+	public function getCloud()
 	{
-		$words = $this->fetchWords($app);
+		$words = $this->fetchWords();
 
 		$colors = ['d22e2e', 'fe9700', 'fe5621', '3e50b4', '009587', '785447', '8ac249', '5f7c8a', '9b26af'];
 
@@ -37,13 +37,13 @@ class ViewListController extends \Illuminate\Routing\Controller
 
 		foreach ($words as $i=>&$word)
 		{
-			$word['color'] 	 = $colors[$i % count($colors)];
-			$word['size'] 	 = ($word['occurences'] / $max) * 100 + 12;
-			$word['opacity'] = $word['occurences'] > 2 ? 1 : .5;
+			$word->color 	 = $colors[$i % count($colors)];
+			$word->size 	 = ($word->occurences / $max) * 100 + 12;
+			$word->opacity = $word->occurences > 2 ? 1 : .5;
 			
-			if ($word['occurences'] > 2)
+			if ($word->occurences > 2)
 			{
-				$word['size'] += 1/(log($word['occurences']) + 0.00001) * 3;
+				$word->size += 1/(log($word->occurences) + 0.00001) * 3;
 			}
 		}
 
