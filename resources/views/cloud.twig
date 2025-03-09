@@ -10,7 +10,7 @@
 
 		<article class="cloud">
 			{% for word in words %}
-			<a href="{{ route('word', {_locale: app.locale, word: word.word}) }}" style="font-size: {{ word.size }}px; color: #{{ word.color }}; opacity: {{ word.opacity }}" title="{{ word.occurences }} songs">{{ word.isProper ? word.word|capitalize : word.word }}</a>
+			<a href="{{ route('word', {locale: app.locale, word: word.word}) }}" style="font-size: {{ word.size }}px; color: #{{ word.color }}; opacity: {{ word.opacity }}" title="{{ word.occurences }} songs">{{ word.isProper ? word.word|capitalize : word.word }}</a>
 			{% endfor %}
 		</article>
 	</section>

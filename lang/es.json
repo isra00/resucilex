@@ -20,7 +20,7 @@
   "//list.twig": "",
   "All words": "Todas las palabras",
   "Words of Leon-Dufour": "Palabras del Leon-Dufour",
-  "Totaling :total": ":total en total",
+  "Totalling :total": ":total en total",
 
   "//word.twig": "",
   "Songs with the word <strong>:word</strong>:": "Cantos con la palabra <strong>:word</strong>:",

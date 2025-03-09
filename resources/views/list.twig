@@ -12,7 +12,7 @@
 			{% endif %}
 		</h1>
 		
-		<h5>{{ trans('Totaling %total%', { '%total%': words|length }) }}</h5>
+		<h5>{{ trans('Totalling :total', { 'total': words|length }) }}</h5>
 
 		<article class="list-words">
 		{%- for word in words -%}
@@ -23,7 +23,7 @@
 			{%- else -%}
 			·</span>
 			{%- endif %}
-			<span><a href="{{ route('word', {_locale: app.locale, word: word.word}) }}">{{ word.isProper ? word.word|capitalize : word.word }} <small>({{ word.occurences }})</small></a>
+			<span><a href="{{ route('word', {locale: app.getLocale(), word: word.word}) }}">{{ word.isProper ? word.word|capitalize : word.word }} <small>({{ word.occurences }})</small></a>
 			{% if loop.last %}</span>{%- endif -%}
 
 		{% endfor -%}

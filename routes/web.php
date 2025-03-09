@@ -15,6 +15,7 @@ Route::get('/{locale}', [\App\Http\Controllers\HomeController::class, 'get'])
 
 Route::get('/{locale}/list/{dufour?}', [\App\Http\Controllers\ViewListController::class, 'getList'])
     ->where('locale', $validLocales)
+    ->where('dufour', 'dufour')
     ->name('list');
 
 Route::get('/{locale}/summary', [\App\Http\Controllers\ViewSummaryController::class, 'get'])
