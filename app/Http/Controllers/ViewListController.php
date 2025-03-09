@@ -50,7 +50,7 @@ class ViewListController extends \Illuminate\Routing\Controller
 		return view('cloud', [
 			'words' 	=> $words, 
 			'bodyClass' => 'page-cloud full-width',
-			'pageTitle' => 'Word cloud',
+			'pageTitle' => __('Word cloud'),
 			'hrefLangs' => app('currentRouteWithAllLocales'),
 		]);
 	}
