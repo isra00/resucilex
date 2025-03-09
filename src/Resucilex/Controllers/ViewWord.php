@@ -24,7 +24,7 @@ ORDER BY page
 SQL;
 		$app['db']->exec("SET sql_mode = ''");
 		
-		$songs = $app['db']->fetchAll(
+		$songs = $app['db']->fetchAllAssociative(
 			$sql, 
 			[$app['id_lang'], $word, $app['id_lang']]
 		);
@@ -63,7 +63,7 @@ SQL;
 
 		$word4print = $songs[0]['isProper'] ? $app['mbUcFirst']($word) : $word;
 
-		$relateds = $app['db']->fetchAll(
+		$relateds = $app['db']->fetchAllAssociative(
 			"SELECT DISTINCT related.lemma, related.related FROM related JOIN lemma ON related.related = lemma.lemma AND related.id_lang = lemma.id_lang WHERE related.lemma = ? AND related.id_lang = ?",
 			[$word, $app['id_lang']]
 		);

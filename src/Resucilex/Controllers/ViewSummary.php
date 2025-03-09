@@ -17,7 +17,7 @@ ORDER BY lemma COLLATE utf8_general_ci, song.title COLLATE utf8_general_ci
 SQL;
 		$app['db']->exec("SET sql_mode = ''");
 		
-		$wordsSongs = $app['db']->fetchAll(
+		$wordsSongs = $app['db']->fetchAllAssociative(
 			$sql, 
 			[$app['id_lang'], $app['id_lang']]
 		);

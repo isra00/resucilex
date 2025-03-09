@@ -81,7 +81,7 @@ SQL;
 			$sql
 		);
 
-		$words = $app['db']->fetchAll(
+		$words = $app['db']->fetchAllAssociative(
 			$sql, 
 			[$app['id_lang'], $app['id_lang'], $app['id_lang']]
 		);

@@ -43,7 +43,7 @@ class Sitemap
 			}
 		}
 
-		$words = $app['db']->fetchAll('SELECT distinct lemma, id_lang FROM lemma');
+		$words = $app['db']->fetchAllAssociative('SELECT distinct lemma, id_lang FROM lemma');
 
 		foreach ($words as $word)
 		{

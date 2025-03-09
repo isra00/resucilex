@@ -38,7 +38,7 @@ $app['mbUcFirst'] = $app->protect(function ($string) {
 
 $app->before(function (Request $req, Application $app) {
 	
-	$locale = $app['db']->fetchColumn(
+	$locale = $app['db']->fetchOne(
 		'SELECT locale FROM lang WHERE short = ?', 
 		[$app['locale']]
 	);
@@ -84,9 +84,9 @@ $app->before(function (Request $req, Application $app) {
  * Disk-based, full-output cache system. 
  * It does not work without proper Apache config (see .htaccess)
  */
-$app->after(function(Request $request, Response $response)
+$app->after(function(Request $request, Response $response) use ($app)
 {
-	if (200 != $response->getStatusCode())
+	if (200 != $response->getStatusCode() || $app['debug'])
 	{
 		return;
 	}
@@ -124,7 +124,7 @@ $validLocales = implode('|', array_column($app['config']['lang'], 'short'));
 
 $app->get('/{_locale}', function() use ($app) 
 {
-	$total = $app['db']->fetchColumn(
+	$total = $app['db']->fetchOne(
 		'SELECT COUNT(DISTINCT lemma) FROM lemma WHERE id_lang = ?', 
 		[$app['id_lang']]
 	);
