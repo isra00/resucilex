@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<section class="main summary">
+		
+		<h1>{{ trans('Integrated view') }}</h1>
+
+		<article class="list-words">
+			<ul>
+
+			{% for wordSong in wordsSongs %}
+
+				{% if loop.first or wordSong.lemma != wordsSongs[loop.index0 - 1].lemma %}
+				<h3>{{ wordSong.lemma }}</h3>
+				{% endif %}
+				<li>{{ wordSong.title }} <small>({{ wordSong.occurences }})</small></li>
+
+			{% endfor %}
+			</ul>
+		</article>
+	</section>
+
+{% endblock %}

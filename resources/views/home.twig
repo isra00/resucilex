@@ -1,0 +1,29 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<section class="main">
+
+		<h1>{{ trans('Lexicon <small>of the</small> <strong>HE ROSE FROM DEATH</strong>')|raw }}</h1>
+
+		<p>
+			{{ trans('<strong>Notice</strong>: verbs appear in infinitive, and nouns in singular. Only single words are indexed, not composed terms. For instance, you will not find <em>word of God</em>, but <em>word</em> and <em>God</em> separately. Prepositions, pronouns, conjunctions, etc. are not indexed.')|raw }}
+		</p>
+
+		<p>
+			{{ trans('The songs are taken from the songbook edited in <strong>London 2013</strong>.')|raw }}
+		</p>
+
+		<nav>
+			<h3>{{ trans('Explore words <small>(:total)</small>', {'total': total})|raw }}</h3>
+			<ul>
+				<li>&rarr; <a href="{{ route('list', {'locale': app.getLocale()}) }}">{{ trans('Display list of words') }}</a></li>
+				{% if app.getLocale() == 'es' %}<li>&rarr; <a href="{{ route('list', { 'dufour': 'dufour', 'locale': app.getLocale() }) }}">{{ trans('Words from the Leon-Dufour') }}</a></li>{% endif %}
+				<li>&rarr; <a href="{{ route('summary', {'locale': app.getLocale()}) }}">{{ trans('Integrated view') }}</a></li>
+				<li>&rarr; <a href="{{ route('tagcloud', {'locale': app.getLocale()}) }}">{{ trans('Display as word cloud') }}</a></li>
+			</ul>
+		</nav>
+
+	</section>
+
+{% endblock %}
