@@ -5,6 +5,19 @@
 
     RewriteEngine On
 
+	# Redirect to disk-cached version
+	#RewriteCond %{REQUEST_FILENAME} !-f
+	#RewriteCond %{REQUEST_URI} !=/
+	#RewriteCond %{QUERY_STRING} !=nocache
+	#RewriteCond "%{DOCUMENT_ROOT}/cache/%{REQUEST_URI}.html" -f
+	#RewriteRule .* cache/%{REQUEST_URI}.html [QSA,NE,L]
+
+	# If the user requests the cached file
+	#RewriteCond %{REQUEST_FILENAME} -f
+	#RewriteRule ^cache(.*)$ $1 [L,R=301]
+
+	# If not cached, run Laravel app (Laravel default config starts here)
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
