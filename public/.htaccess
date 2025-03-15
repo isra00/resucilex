@@ -5,27 +5,29 @@
 
     RewriteEngine On
 
-	# Redirect to disk-cached version
-	#RewriteCond %{REQUEST_FILENAME} !-f
-	#RewriteCond %{REQUEST_URI} !=/
-	#RewriteCond %{QUERY_STRING} !=nocache
-	#RewriteCond "%{DOCUMENT_ROOT}/cache/%{REQUEST_URI}.html" -f
-	#RewriteRule .* cache/%{REQUEST_URI}.html [QSA,NE,L]
-
-	# If the user requests the cached file
-	#RewriteCond %{REQUEST_FILENAME} -f
-	#RewriteRule ^cache(.*)$ $1 [L,R=301]
-
-	# If not cached, run Laravel app (Laravel default config starts here)
-
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Handle X-XSRF-Token Header
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
+
+    # Serve Cached Page If Available (JosephSilber/page-cache)
+    RewriteCond %{REQUEST_URI} ^/?$
+    RewriteCond %{DOCUMENT_ROOT}/page-cache/pc__index__pc.html -f
+    RewriteRule .? page-cache/pc__index__pc.html [L]
+    RewriteCond %{DOCUMENT_ROOT}/page-cache%{REQUEST_URI}.html -f
+    RewriteRule . page-cache%{REQUEST_URI}.html [L]
+    RewriteCond %{DOCUMENT_ROOT}/page-cache%{REQUEST_URI}.json -f
+    RewriteRule . page-cache%{REQUEST_URI}.json [L]
+    RewriteCond %{DOCUMENT_ROOT}/page-cache%{REQUEST_URI}.xml -f
+    RewriteRule . page-cache%{REQUEST_URI}.xml [L]
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

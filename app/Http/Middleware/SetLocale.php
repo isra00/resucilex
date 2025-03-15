@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
+use Symfony\Component\HttpFoundation\Response;
 
 class SetLocale
 {
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         //Not really related to locale
         app()->instance('absoluteUriWithoutQuery',
@@ -24,7 +25,7 @@ class SetLocale
         );
 
         // In case the endpoint has no locale (e.g. /sitemap.xml).
-        if (!array_key_exists('locale', $request->route()->parameters())) {
+        if (!$request->route() || empty($request->route()->parameter('locale'))) {
             return $next($request);
         }
 
