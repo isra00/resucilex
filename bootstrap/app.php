@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(append: [\App\Http\Middleware\SetLocale::class]);
         $middleware->alias([
-            'page-cache' => \Silber\PageCache\Middleware\CacheResonse::class,
+            'page-cache' => \Silber\PageCache\Middleware\CacheResponse::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
