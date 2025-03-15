@@ -1,0 +1,27 @@
+services:
+  franken:
+    image: resucilexf
+    build:
+      context: .
+    # restart: always
+    ports:
+      - "8000:8000" # HTTP
+      - "443:443" # HTTPS
+      - "443:443/udp" # HTTP/3
+      - "2019:2019" # Admin
+    entrypoint: php artisan octane:frankenphp --workers=1 --max-requests=1
+    volumes:
+      - ./:/app
+      - caddy_data:/data
+      - caddy_config:/config
+      - ${PWD}/Caddyfile:/etc/caddy/Caddyfile
+    # comment the following line in production, it allows to have nice human-readable logs in dev
+    tty: true
+    environment:
+      - SERVER_NAME=resucilex.local
+      - CADDY_GLOBAL_OPTIONS=debug
+
+# Volumes needed for Caddy certificates and configuration
+volumes:
+  caddy_data:
+  caddy_config:
