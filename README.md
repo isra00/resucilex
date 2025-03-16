@@ -2,6 +2,7 @@ Resucilex 2.0 by Israel Viana
 =============================
 
 Tech used:
+ - PHP 8.2
  - Laravel 12
  - Stemming/POS tagging has been performed with TreeTagger 3.2.1, hunspell -s (myspell-es 1.11-14 for Spanish and hunspell-en-gb 5.1.0-1ubuntu2 for English) and manually checked.
 
